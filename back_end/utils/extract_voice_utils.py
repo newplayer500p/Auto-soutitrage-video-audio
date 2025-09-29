@@ -69,7 +69,7 @@ def run_demucs(
     out_target: Path,
     *,
     single_sig: str = None,    # sig unique, ex: 'a1d90b5c' (si fourni on l'utilise comme clé de modèle)
-    model: str = "mdx_extra",  # modèle par défaut si single_sig=None
+    model: str = "mdx_q",  # modèle par défaut si single_sig=None
     device: str = "cuda",
     shifts: int = 0,
     jobs: int = 1,

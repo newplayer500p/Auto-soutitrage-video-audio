@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:front_end/pages/controls/show_download_option.dart';
 import 'package:front_end/pages/controls/upload_controlle.dart';
-import 'package:front_end/pages/option/show_download_option.dart';
 import 'package:front_end/pages/widget_page/action_button.dart';
 import 'package:front_end/pages/widget_page/choix_font.dart';
 import 'package:front_end/pages/widget_page/choix_position.dart';

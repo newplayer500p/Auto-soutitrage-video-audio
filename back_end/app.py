@@ -21,6 +21,7 @@ from interfaces.interface import (
     segments_to_srt_interface,
     burn_subtitles_into_video_interface,
 )
+from interfaces.validate_aligned_segment import validate_aligned_segments
 
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 logger = logging.getLogger("app")
@@ -90,6 +91,9 @@ async def _run_full_pipeline(
             device,
             True,  # reuse_models
         )
+        
+        phrase_segments = validate_aligned_segments(phrase_segments)
+            
         result["language_detected"] = detected_lang
         result["n_phrase_segments"] = len(phrase_segments)
                 

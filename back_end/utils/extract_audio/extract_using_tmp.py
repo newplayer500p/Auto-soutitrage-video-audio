@@ -2,7 +2,7 @@ import tempfile
 from ..run_cmd_utils import run_check
 import time
 import shutil
-from extract_direct import extract_direct
+from .extract_direct import extract_direct
 import os
 
 def _safe_remove(path):
