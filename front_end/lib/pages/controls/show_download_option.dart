@@ -34,12 +34,12 @@ void showDownloadOptions(BuildContext context, Map<String, String> urls) {
                           try {
                             await downloader.downloadFile(url, filename);
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('\$label téléchargé')),
+                              SnackBar(content: Text('$label téléchargé')),
                             );
                           } catch (err) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Erreur téléchargement: \$err'),
+                                content: Text('Erreur téléchargement: $err'),
                                 backgroundColor: Colors.red,
                               ),
                             );

@@ -1,4 +1,3 @@
-// Implementation for non-web platforms (Linux / macOS / Windows / mobile)
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:path/path.dart' as p;
@@ -6,7 +5,6 @@ import 'package:path/path.dart' as p;
 Future<void> platformDownloadFile(String url, String filename) async {
   final dio = Dio();
 
-  // Try to save in Users' Downloads folder if available, otherwise fallback to current dir.
   final home =
       Platform.environment['HOME'] ??
       Platform.environment['USERPROFILE'] ??
@@ -15,11 +13,8 @@ Future<void> platformDownloadFile(String url, String filename) async {
   if (!await downloadsDir.exists()) {
     try {
       await downloadsDir.create(recursive: true);
-    } catch (_) {
-      // fallback: use current directory
-    }
+    } catch (_) {}
   }
-
   final savePath = p.join(
     downloadsDir.existsSync() ? downloadsDir.path : '.',
     filename,
@@ -28,26 +23,32 @@ Future<void> platformDownloadFile(String url, String filename) async {
   try {
     final response = await dio.get<List<int>>(
       url,
-      options: Options(responseType: ResponseType.bytes),
+      options: Options(
+        responseType: ResponseType.bytes,
+        followRedirects: true,
+        validateStatus: (status) => status != null && status < 400,
+      ),
     );
 
-    final file = File(savePath);
-    await file.writeAsBytes(response.data ?? [], flush: true);
+    if (response.statusCode == null || response.statusCode! >= 400) {
+      throw Exception('HTTP ${response.statusCode}');
+    }
 
-    // Try to open the file (best-effort). Commands differ by OS.
+    final bytes = response.data ?? <int>[];
+    final file = File(savePath);
+    await file.writeAsBytes(bytes, flush: true);
+
+    // best-effort open the file
     try {
       if (Platform.isLinux) {
         await Process.start('xdg-open', [file.path]);
       } else if (Platform.isMacOS) {
         await Process.start('open', [file.path]);
       } else if (Platform.isWindows) {
-        // 'start' is a shell builtin, spawn via cmd
         await Process.start('cmd', ['/C', 'start', '', file.path]);
       }
-    } catch (_) {
-      // ignore opening errors — file is still saved
-    }
-  } catch (e) {
-    throw Exception('Échec du téléchargement (IO): \$e');
+    } catch (_) {}
+  } catch (e, st) {
+    throw Exception('Échec du téléchargement (IO): $e \n $st');
   }
 }

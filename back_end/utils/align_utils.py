@@ -27,15 +27,17 @@ def _word_end(w, seg_end=None, seg_start=None):
         return _float(s) + 0.05
     return _float(seg_end if seg_end is not None else (seg_start if seg_start is not None else 0.0))
 
-
 def build_phrase_segments_from_aligned_smart(
     aligned_segments: List[Dict[str, Any]],
-    min_words: int = 3,
-    max_words: int = 12,
-    max_phrase_duration: float = 8.0,
+    min_words: int = 2,  # Réduit de 3 à 2
+    max_words: int = 16,  # Augmenté de 12 à 16
+    max_phrase_duration: float = 12.0,  # Augmenté de 8.0 à 12.0
     punctuation_split: bool = True,
 ) -> List[Dict[str, Any]]:
     phrase_segments: List[Dict[str, Any]] = []
+    
+    # Nouvelle regex: seulement ponctuation de fin de phrase, pas les virgules
+    PUNCT_END_RE = re.compile(r"[.!?…]+$")  # Supprimé la virgule
     
     for seg in aligned_segments:
         words = seg.get("words")
@@ -45,32 +47,39 @@ def build_phrase_segments_from_aligned_smart(
         if not words:
             continue
             
-        # Traiter les mots en groupes cohérents
         current_group = []
         
-        for word in words:
+        for i, word in enumerate(words):
             current_group.append(word)
             word_text = _word_text(word)
             
-            # Vérifier si on doit fermer le groupe actuel
             should_close = False
             
-            # Vérifier la ponctuation de fin
+            # ONLY split on sentence-ending punctuation, not commas
             if punctuation_split and PUNCT_END_RE.search(word_text):
                 should_close = True
                 
-            # Vérifier la durée maximale
+            # Vérifier la durée maximale (augmentée)
             group_start = _word_start(current_group[0], seg_start)
             group_end = _word_end(current_group[-1], seg_end, seg_start)
             if (group_end - group_start) >= max_phrase_duration:
                 should_close = True
                 
-            # Vérifier le nombre maximum de mots
+            # Vérifier le nombre maximum de mots (augmenté)
             if len(current_group) >= max_words:
                 should_close = True
                 
+            # Vérifier si le mot suivant commence une nouvelle phrase
+            if i + 1 < len(words):
+                next_word = words[i + 1]
+                next_text = _word_text(next_word)
+                # Si le mot suivant commence par une majuscule et qu'on a déjà quelques mots
+                if (len(current_group) >= min_words and 
+                    next_text and next_text[0].isupper() and 
+                    not any(w in next_text.lower() for w in ['i', 'you', 'he', 'she', 'it', 'we', 'they', 'the', 'a', 'an'])):
+                    should_close = True
+                
             if should_close and len(current_group) >= min_words:
-                # Créer le segment
                 phrase_segments.append({
                     "start": group_start,
                     "end": group_end,
@@ -79,17 +88,27 @@ def build_phrase_segments_from_aligned_smart(
                 })
                 current_group = []
                 
-        # Traiter les mots restants
+        # Traiter les mots restants avec fusion plus agressive
         if current_group:
             group_start = _word_start(current_group[0], seg_start)
             group_end = _word_end(current_group[-1], seg_end, seg_start)
             
-            # Éviter les segments trop courts en les fusionnant avec le précédent
+            # Fusion plus agressive avec le segment précédent
             if len(current_group) < min_words and phrase_segments:
                 last_segment = phrase_segments[-1]
-                last_segment["end"] = group_end
-                last_segment["text"] = (last_segment["text"] + " " + 
-                                      " ".join(_word_text(w) for w in current_group)).strip()
+                # Vérifier si la fusion fait sens (même segment original)
+                if group_start - last_segment["end"] < 2.0:  # Augmenté le seuil
+                    last_segment["end"] = group_end
+                    last_segment["text"] = (last_segment["text"] + " " + 
+                                          " ".join(_word_text(w) for w in current_group)).strip()
+                    last_segment["words"].extend(current_group)
+                else:
+                    phrase_segments.append({
+                        "start": group_start,
+                        "end": group_end,
+                        "text": " ".join(_word_text(w) for w in current_group).strip(),
+                        "words": current_group
+                    })
             else:
                 phrase_segments.append({
                     "start": group_start,
@@ -98,7 +117,6 @@ def build_phrase_segments_from_aligned_smart(
                     "words": current_group
                 })
     
-    # Post-processing: éliminer les chevauchements
     return _remove_overlapping_segments(phrase_segments)
 
 def _remove_overlapping_segments(segments: List[Dict]) -> List[Dict]:

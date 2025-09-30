@@ -61,7 +61,7 @@ def segments_to_srt(
     segments: List[Dict],
     output_srt_path: str,
     max_chars_per_line: int = 42,
-    merge_threshold: float = 0,
+    merge_threshold: float = 1.0,
     min_duration: float = 0.04,
     sanitize: bool = True,
     ensure_order: bool = True,

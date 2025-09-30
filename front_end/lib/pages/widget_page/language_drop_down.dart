@@ -24,8 +24,6 @@ class LangueDropdown extends StatelessWidget {
         return 'Français';
       case 'en':
         return 'Anglais';
-      case 'mg':
-        return 'Malagasy';
       case 'es':
         return 'Espagnol';
       case 'de':

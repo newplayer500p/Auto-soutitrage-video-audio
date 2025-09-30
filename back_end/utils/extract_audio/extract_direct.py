@@ -1,6 +1,6 @@
 # extract_direct.py (corrigé)
 import time
-from ..run_cmd_utils import run_check
+from ..helper.run_cmd_utils import run_check
 
 def extract_direct(input_video, output_wav, sample_rate=44100, channels=2, timeout=900):
     """Décodage + ré-encodage en une passe.

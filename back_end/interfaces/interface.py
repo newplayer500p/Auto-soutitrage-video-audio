@@ -8,6 +8,7 @@ from utils.extract_audio_utils import extract_audio
 from utils.subtitle_generator_utils import segments_to_srt
 from utils.subtitle_video_utils import burn_subtitles_into_video
 from utils.extract_voice_utils import run_demucs
+from utils.subtitle_config.segment_to_ass import segments_to_ass
 
 
 
@@ -130,22 +131,43 @@ def segments_to_srt_interface(
     logger.info("SRT écrit: %s", out)
     return out
 
+#################################################3
+def segments_to_ass_interface(
+    segments: List[Dict[str, Any]],
+    output_ass_path: Union[str, Path],
+    playresx: int = 1920,
+    playresy: int = 1080,
+    font_name: str = "Arial",
+    font_size: int = 36,
+    font_color: str = "#FFFFFF",
+    outline_color: str = "#000000",
+    position: str = "top-center",
+) -> Path:
+    out = _ensure_parent(output_ass_path)
+    # convert hex colors to ASS color string if you have hex_to_ass_color
+    from utils.subtitle_video_utils import hex_to_ass_color
+    primary = hex_to_ass_color(font_color)
+    outline = hex_to_ass_color(outline_color)
+    segments_to_ass(
+        segments=segments,
+        output_ass_path=str(out),
+        playresx=playresx,
+        playresy=playresy,
+        fontname=font_name,
+        fontsize=font_size,
+        font_color_ass=primary,
+        outline_color_ass=outline,
+        outline_width=2,
+        position=position,
+        margin_v=30,
+    )
+    return out
 
 # 5) Interface pour burn_subtitles_into_video (retourne Path)
 def burn_subtitles_into_video_interface(
     input_video: Union[str, Path],
     input_srt: Union[str, Path],
-    output_video: Optional[Union[str, Path]] = None,
-    position: str = "bottom-center",
-    font_name: str = "Arial",
-    font_size: int = 24,
-    font_color: str = "#FFFFFF",
-    outline_color: str = "#000000",
-    outline_width: int = 2,
-    shadow: int = 0,
-    encoding: str = "utf-8",
-    ffmpeg_path: str = "ffmpeg",
-    overwrite: bool = True,
+    output_video: Optional[Union[str, Path]] = None
 ) -> Path:
     """
     Wrapper safer pour burn_subtitles_into_video.
@@ -163,17 +185,7 @@ def burn_subtitles_into_video_interface(
     out = burn_subtitles_into_video(
         input_video=input_video,
         input_srt=input_srt,
-        output_video=output_video,
-        position=position,
-        font_name=font_name,
-        font_size=font_size,
-        font_color=font_color,
-        outline_color=outline_color,
-        outline_width=outline_width,
-        shadow=shadow,
-        encoding=encoding,
-        ffmpeg_path=ffmpeg_path,
-        overwrite=overwrite,
+        output_video=output_video
     )
     logger.info("Vidéo sous-titrée écrite: %s", out)
     return out

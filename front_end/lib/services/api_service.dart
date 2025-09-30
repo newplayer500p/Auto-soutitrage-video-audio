@@ -11,7 +11,6 @@ class ApiService {
   Future<Map<String, dynamic>> uploadVideo({
     String baseUrl = "http://localhost:8000",
     required PlatformFile videoFile,
-    PlatformFile? transcriptFile,
     required String language,
     required String position,
     required String fontName,
@@ -37,25 +36,6 @@ class ApiService {
         filename: p.basename(videoFile.name),
       );
       form.files.add(MapEntry('file', mp));
-    }
-
-    // optional transcript
-    if (transcriptFile != null) {
-      if (kIsWeb || transcriptFile.path == null) {
-        final tbytes = transcriptFile.bytes;
-        if (tbytes == null) throw Exception('Transcript bytes are null (web).');
-        final tmp = MultipartFile.fromBytes(
-          tbytes,
-          filename: transcriptFile.name,
-        );
-        form.files.add(MapEntry('transcript', tmp));
-      } else {
-        final tmp = await MultipartFile.fromFile(
-          transcriptFile.path!,
-          filename: p.basename(transcriptFile.name),
-        );
-        form.files.add(MapEntry('transcript', tmp));
-      }
     }
 
     final response = await _dio.post(

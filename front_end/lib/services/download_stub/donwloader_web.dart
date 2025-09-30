@@ -1,17 +1,23 @@
-// Web implementation: utilise un <a> pour forcer le téléchargement / ouvrir dans un nouvel onglet.
+// web implementation
 import 'dart:html' as html;
 
 Future<void> platformDownloadFile(String url, String filename) async {
   try {
-    final anchor = html.AnchorElement(href: url)
+    final req = await html.HttpRequest.request(
+      url,
+      method: 'GET',
+      responseType: 'blob',
+    );
+    final blob = req.response as html.Blob;
+    final objectUrl = html.Url.createObjectUrlFromBlob(blob);
+    final anchor = html.AnchorElement(href: objectUrl)
       ..setAttribute('download', filename)
-      ..target = '_blank';
-
-    // some browsers require the anchor to be in the document
+      ..style.display = 'none';
     html.document.body?.append(anchor);
     anchor.click();
     anchor.remove();
+    html.Url.revokeObjectUrl(objectUrl);
   } catch (e) {
-    throw Exception('Échec du téléchargement Web: \$e');
+    throw Exception('Échec du téléchargement Web: $e');
   }
 }

@@ -3,12 +3,12 @@ from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
+from fastapi.middleware.cors import CORSMiddleware
 
 
 from pathlib import Path
 from datetime import datetime
 import shutil
-import os
 import logging
 import traceback
 from typing import Optional
@@ -19,14 +19,25 @@ from interfaces.interface import (
     get_voice_interface,
     build_phrases_interface,
     segments_to_srt_interface,
-    burn_subtitles_into_video_interface,
+    segments_to_ass_interface,
+    burn_subtitles_into_video_interface
 )
-from interfaces.validate_aligned_segment import validate_aligned_segments
+from utils.cleaner.clear_gpu_cache import cleanup_demucs_processes, force_gpu_cleanup
+from utils.helper.prob_video import get_video_resolution
+from utils.subtitle_config.choose_font_size import choose_font_size_for_video
 
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 logger = logging.getLogger("app")
 
 app = FastAPI(title="Pipeline Audio → Sous-titres")
+
+app.add_middleware(
+  CORSMiddleware,
+  allow_origins=["*"],  # en dev OK, en prod restreindre aux origines nécessaires
+  allow_credentials=True,
+  allow_methods=["*"],
+  allow_headers=["*"],
+)
 
 # dossier uploads accessible via /uploads
 UPLOAD_DIR = Path("uploads")
@@ -53,7 +64,7 @@ async def _run_full_pipeline(
     font_name: str = "Arial",
     font_size: int = 24,
     font_color: str = "#FFFFFF",
-    single_model: Optional[str] = None
+    single_model: Optional[str] = "OK"
 ):
     """
     Appelle les interfaces (bloquantes) dans un thread pool et renvoie un dict résultat.
@@ -91,22 +102,53 @@ async def _run_full_pipeline(
             device,
             True,  # reuse_models
         )
-        
-        phrase_segments = validate_aligned_segments(phrase_segments)
-            
+                    
         result["language_detected"] = detected_lang
         result["n_phrase_segments"] = len(phrase_segments)
-                
+        
+        try:
+            video_w, video_h = await run_in_threadpool(get_video_resolution, video_path)
+        except Exception:
+            # fallback to 1920x1080 if ffprobe absent/faille
+            video_w, video_h = 1920, 1080
 
+        # Adjust font_size proportionally to video height (optional, prevents too small fonts on hi-res)
+       
+        adjusted_font_size = choose_font_size_for_video(video_h, font_size)
+
+
+        
         # 4) write SRT
         out_dir_str = out_dir / "sous_titre"
         out_dir_str.mkdir(parents=True, exist_ok=True)
         srt_out = out_dir_str / (video_path.stem + ".srt")
         logger.info("Écriture SRT -> %s", srt_out)
-        srt_path = await run_in_threadpool(segments_to_srt_interface, phrase_segments, str(srt_out))
+        
+        # write SRT
+        srt_path = await run_in_threadpool(
+            segments_to_srt_interface, 
+            phrase_segments, 
+            str(srt_out)
+        )
         result["srt_path"] = str(srt_path)
-        
-        
+
+        # additionally generate ASS (recommended for reliable positioning)
+        ass_out = out_dir_str / (video_path.stem + ".ass")
+        logger.info("Écriture ASS -> %s", ass_out)
+        ass_path = await run_in_threadpool(
+            # use the new interface we added
+            # segments_to_ass_interface should be imported at top of app.py (see below)
+            segments_to_ass_interface,
+            phrase_segments,
+            str(ass_out),
+            video_w, video_h,  # playresx, playresy (optional: get real video res if you prefer)
+            font_name,
+            adjusted_font_size,
+            font_color,
+            "#000000",
+            position
+        )
+        result["ass_path"] = str(ass_path)
 
 
         # 5) burn subtitles
@@ -116,18 +158,8 @@ async def _run_full_pipeline(
         await run_in_threadpool(
             burn_subtitles_into_video_interface,
             str(video_path),
-            str(srt_out),
-            str(subtitled_out),
-            position=position,
-            font_name=font_name,
-            font_size=font_size,
-            font_color=font_color,
-            outline_color="#000000",
-            outline_width=2,
-            shadow=0,
-            encoding="utf-8",
-            ffmpeg_path="ffmpeg",
-            overwrite=True,
+            str(ass_path),
+            str(subtitled_out)
         )
 
         
@@ -138,6 +170,9 @@ async def _run_full_pipeline(
 
     except Exception as e:
         logger.error("Erreur pipeline: %s\n%s", e, traceback.format_exc())
+        
+        await run_in_threadpool(cleanup_demucs_processes)
+        await run_in_threadpool(force_gpu_cleanup)
         result["error"] = str(e)
         result["traceback"] = traceback.format_exc()
         return result

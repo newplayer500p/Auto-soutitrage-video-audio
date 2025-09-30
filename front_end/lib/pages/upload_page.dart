@@ -27,7 +27,7 @@ class _UploadPageState extends State<UploadPage> {
   PlatformFile? _videoFile;
 
   final String _backendBase = 'http://127.0.0.1:8000';
-  final List<String> _supportedLanguages = ['fr', 'en', 'mg', "es", "de"];
+  final List<String> _supportedLanguages = ['fr', 'en', "es", "de"];
 
   Future<void> _pickVideo() async {
     try {
@@ -72,6 +72,15 @@ class _UploadPageState extends State<UploadPage> {
     }
 
     return true;
+  }
+
+  String makeAbsolute(String url) {
+    try {
+      final u = Uri.parse(url);
+      if (u.isAbsolute) return url;
+    } catch (_) {}
+    // _backendBase est défini dans ton state
+    return '$_backendBase${url.startsWith('/') ? '' : '/'}$url';
   }
 
   Future<void> _submit() async {
@@ -128,13 +137,15 @@ class _UploadPageState extends State<UploadPage> {
       if (response['ok'] == true) {
         _showSuccess("Traitement effectuer");
 
+        final downloadMap = {
+          "video": makeAbsolute(response["video"] ?? ""),
+          "vocals": makeAbsolute(response["vocals"] ?? ""),
+          "srt": makeAbsolute(response["srt"] ?? ""),
+          "subtitled": makeAbsolute(response["subtitled_video"] ?? ""),
+        };
+
         // Option: Navigate to result page or show preview
-        showDownloadOptions(context, {
-          "video": response["video"] ?? "",
-          "vocals": response["vocals"] ?? "",
-          "srt": response["srt"] ?? "",
-          "subtitled": response["subtitled_video"] ?? "",
-        });
+        showDownloadOptions(context, downloadMap);
       } else {
         final error = response['error'] ?? 'Erreur inconnue';
         _showError('Erreur lors du traitement: $error');

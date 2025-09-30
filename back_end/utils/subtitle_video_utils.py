@@ -16,14 +16,6 @@ def burn_subtitles_into_video(
     input_srt: Union[str, Path],
     output_video: Optional[Union[str, Path]] = None,
     *,
-    position: str = "bottom-center",   # 'bottom-center' | 'center' | 'top-center'
-    font_name: str = "Arial",
-    font_size: int = 24,
-    font_color: str = "#FFFFFF",
-    outline_color: str = "#000000",
-    outline_width: int = 2,
-    shadow: int = 0,
-    encoding: str = "utf-8",
     ffmpeg_path: str = "ffmpeg",
     overwrite: bool = True,
     timeout: Optional[int] = None,
@@ -54,34 +46,22 @@ def burn_subtitles_into_video(
     # ensure parent
     out.parent.mkdir(parents=True, exist_ok=True)
 
-    # alignment code ASS (1..9)
-    align_code = normalize_position(position)
-
-    # convert colors
-    primary = hex_to_ass_color(font_color)
-    outline = hex_to_ass_color(outline_color)
-
     # build force_style string
-    # Examples of style fields: Fontname, Fontsize, PrimaryColour, OutlineColour, Outline, Shadow, Alignment
-    force_style_items = [
-        f"Fontname={font_name}",
-        f"Fontsize={int(font_size)}",
-        f"PrimaryColour={primary}",
-        f"OutlineColour={outline}",
-        f"Outline={int(outline_width)}",
-        f"Shadow={int(shadow)}",
-        f"Alignment={align_code}",
-        # you can add more ASS style attributes here if desired
-    ]
-    force_style = ",".join(force_style_items)
-
-    # escape paths for ffmpeg filter string
+        # escape path for ffmpeg filter
     srt_escaped = escape_path_for_subtitles(input_srt)
 
-    # Compose filter string. We wrap the filename in single quotes.
-    # Note: on some ffmpeg builds it's necessary to provide the charset too:
-    # subtitles=filename:force_style='...' :charenc=CP1252  (we use utf-8 by default)
-    filter_str = f"subtitles='{srt_escaped}':force_style='{force_style}'"
+    # If input is an .ass file, use the ass filter (ASS contains Styles -> reliable positioning).
+    # Otherwise fall back to subtitles=...:force_style=...
+    if input_srt.suffix.lower() == ".ass":
+        filter_str = f"ass='{srt_escaped}'"
+    else:
+        # build force_style string (for .srt fallback)
+        force_style_items = [
+            f"Fontsize={24}"
+        ]
+        force_style = ",".join(force_style_items)
+        filter_str = f"subtitles='{srt_escaped}':force_style='{force_style}'"
+
 
     cmd = [
         ffmpeg_path,

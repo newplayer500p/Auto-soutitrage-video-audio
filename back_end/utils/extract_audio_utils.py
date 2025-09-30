@@ -3,8 +3,8 @@ import time
 import os
 from pathlib import Path
 from typing import Union
-from .prob_audio_utils import probe_first_audio
-from .run_cmd_utils import run_check
+from .helper.prob_audio_utils import probe_first_audio
+from .helper.run_cmd_utils import run_check
 from .extract_audio.extract_direct import extract_direct
 from .extract_audio.extract_using_tmp import extract_copy_then_convert_tmpfile
 from .extract_audio.extract_copy_then_convert import extract_fifo_copy_then_convert_safe
