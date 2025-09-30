@@ -34,10 +34,13 @@ def transcribe_with_whisper_small(
     # on passe le chemin du fichier (comportement identique à la CLI)
     # temperature et beam_size sont optionnels; tu peux adapter
     result = model.transcribe(str(audio_path), language=language, temperature=temperature, beam_size=beam_size)
+    
+    print("-------------------------------------------------------------------")
+    print(result)
 
     segments = [
         {
-            "start": float(s.get("start", s.get("t0", 0.0))),
+            "start": float(s.get("start", s.get("t1", s.get("t0", s.get("start", 0.0))))),
             "end":   float(s.get("end",   s.get("t1", s.get("start", 0.0)))),
             "text":  (s.get("text") or s.get("caption") or "").strip()
         }
