@@ -32,7 +32,7 @@ def build_phrases(
     phrase_segments = segment_phrases(
         aligned_segments,
         silence_threshold=0.5,
-        min_words=3,
+        min_words=5,
         max_words=14,
         max_chars=80,
         max_duration=6,
