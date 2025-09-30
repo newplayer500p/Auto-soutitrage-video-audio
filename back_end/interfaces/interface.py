@@ -5,7 +5,6 @@ import logging
 
 from utils.align_utils import build_phrases
 from utils.extract_audio_utils import extract_audio
-from utils.subtitle_generator_utils import segments_to_srt
 from utils.subtitle_video_utils import burn_subtitles_into_video
 from utils.extract_voice_utils import run_demucs
 from utils.subtitle_config.segment_to_ass import segments_to_ass
@@ -106,32 +105,7 @@ def build_phrases_interface(
     return phrase_segments, lang
 
 
-# 4) Interface pour segments_to_srt (écrit fichier .srt puis retourne Path)
-def segments_to_srt_interface(
-    segments: List[Dict[str, Any]],
-    output_srt_path: Union[str, Path],
-    encoding: str = "utf-8",
-) -> Path:
-    """
-    Wrapper pour segments_to_srt.
-    - Vérifie que segments est une liste non vide.
-    - Assure l'existence du dossier parent et appelle segments_to_srt.
-    - Retourne le Path du fichier SRT écrit.
-    """
-    if not isinstance(segments, list):
-        raise TypeError("segments doit être une liste de dicts")
-
-    out = _ensure_parent(output_srt_path)
-    # appelle la fonction qui écrit le fichier (retour None) -> on retourne le Path
-    segments_to_srt(
-        segments=segments,
-        output_srt_path=str(out),
-        encoding=encoding,
-    )
-    logger.info("SRT écrit: %s", out)
-    return out
-
-#################################################3
+# 4) Interface pour segments_to_ass(écrit fichier .srt puis retourne Path)
 def segments_to_ass_interface(
     segments: List[Dict[str, Any]],
     output_ass_path: Union[str, Path],

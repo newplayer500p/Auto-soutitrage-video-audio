@@ -18,7 +18,6 @@ from interfaces.interface import (
     extract_audio_interface,
     get_voice_interface,
     build_phrases_interface,
-    segments_to_srt_interface,
     segments_to_ass_interface,
     burn_subtitles_into_video_interface
 )
@@ -118,30 +117,17 @@ async def _run_full_pipeline(
 
 
         
-        # 4) write SRT
+        # 4) write ASS only (we no longer produce .srt)
         out_dir_str = out_dir / "sous_titre"
         out_dir_str.mkdir(parents=True, exist_ok=True)
-        srt_out = out_dir_str / (video_path.stem + ".srt")
-        logger.info("Écriture SRT -> %s", srt_out)
-        
-        # write SRT
-        srt_path = await run_in_threadpool(
-            segments_to_srt_interface, 
-            phrase_segments, 
-            str(srt_out)
-        )
-        result["srt_path"] = str(srt_path)
 
-        # additionally generate ASS (recommended for reliable positioning)
         ass_out = out_dir_str / (video_path.stem + ".ass")
         logger.info("Écriture ASS -> %s", ass_out)
         ass_path = await run_in_threadpool(
-            # use the new interface we added
-            # segments_to_ass_interface should be imported at top of app.py (see below)
             segments_to_ass_interface,
             phrase_segments,
             str(ass_out),
-            video_w, video_h,  # playresx, playresy (optional: get real video res if you prefer)
+            video_w, video_h,           # playres
             font_name,
             adjusted_font_size,
             font_color,
@@ -149,6 +135,7 @@ async def _run_full_pipeline(
             position
         )
         result["ass_path"] = str(ass_path)
+
 
 
         # 5) burn subtitles
@@ -234,7 +221,7 @@ async def upload_and_process_video(
         "video": f"/uploads/{video_path.relative_to(UPLOAD_DIR).as_posix()}",
         "wav": rel_url(result.get("wav_path", "")),
         "vocals": rel_url(result.get("vocals_path", "")),
-        "srt": rel_url(result.get("srt_path", "")),
+        "ass": rel_url(result.get("ass_path", "")),
         "subtitled_video": rel_url(result.get("subtitled_video", "")),
         "language_detected": result.get("language_detected"),
         "extract_info": result.get("extract_info"),
