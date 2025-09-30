@@ -2,7 +2,7 @@ import logging
 from pathlib import Path
 from typing import List, Dict, Any, Tuple
 
-from utils.decoupage.segmenter import segment_phrases_punct_based
+from utils.decoupage.segmenter import segment_phrases
 from .upgrade_with_whisperx_utils import transcribe_and_align
 
 
@@ -28,13 +28,13 @@ def build_phrases(
         reuse_models=reuse_models,
     )
 
-    phrase_segments = segment_phrases_punct_based(
+    phrase_segments = segment_phrases(
         aligned_segments,
-        silence_threshold=0.6,
-        min_duration_for_punct_split=1.0,
-        max_words_per_segment=16,
-        max_segment_duration=6.0,
-        punctuation_chars=",.!?;:"
+        silence_threshold=0.4,
+        min_words=3,
+        max_words=14,
+        max_chars=80,
+        max_duration=6,
     )
 
     return phrase_segments, lang

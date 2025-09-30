@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List, Dict
 import unicodedata
 import re
-from utils.subtitle_config.subtitle_position import normalize_position
+from utils.subtitle_config.subtitle_position import _ALIGNMENT_MAP
 
 # réutilise helpers que tu as déjà (ou recopie _sanitize_text/_split_text_lines si nécessaire)
 _RE_CONTROL = re.compile(r"[\x00-\x1f\x7f-\x9f]")
@@ -48,7 +48,7 @@ def segments_to_ass(
     - output_ass_path : chemin à écrire
     - playresx, playresy : résolution de référence (optionnel)
     """
-    align_code = normalize_position(position)
+    align_code = _ALIGNMENT_MAP[position]
     
     header = [
         "[Script Info]",

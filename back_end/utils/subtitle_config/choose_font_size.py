@@ -7,20 +7,20 @@ def choose_font_size_for_video(video_h: int, user_font_size: int) -> int:
     """
     # recommandations empiriques — tu peux les ajuster
     if video_h <= 480:
-        suggested = 18
+        suggested = 1
     elif video_h <= 720:
-        suggested = 44   # 720p → ~44-56 classique. on prend 44 comme plancher.
+        suggested = 1.8   # 720p → ~44-56 classique. on prend 44 comme plancher.
     elif video_h <= 1080:
-        suggested = 56
+        suggested = 2
     elif video_h <= 1440:
-        suggested = 78
+        suggested = 2.2
     elif video_h <= 2160:
-        suggested = 110
+        suggested = 2.4
     else:
         # pour plus grand que 4K, on scale linéairement
-        suggested = int(56 * (video_h / 1080.0))
+        suggested = 2.6
 
     # on prend au moins la taille que l'utilisateur demande,
     # mais on laisse aussi un petit marge où on peut monter jusqu'à suggested.
     # si user demande plus grand, on garde sa demande.
-    return max(int(user_font_size), suggested)
+    return user_font_size * suggested

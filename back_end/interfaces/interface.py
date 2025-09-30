@@ -8,6 +8,7 @@ from utils.extract_audio_utils import extract_audio
 from utils.subtitle_video_utils import burn_subtitles_into_video
 from utils.extract_voice_utils import run_demucs
 from utils.subtitle_config.segment_to_ass import segments_to_ass
+from utils.subtitle_config.convert_color import hex_to_ass_color
 
 
 
@@ -119,7 +120,6 @@ def segments_to_ass_interface(
 ) -> Path:
     out = _ensure_parent(output_ass_path)
     # convert hex colors to ASS color string if you have hex_to_ass_color
-    from utils.subtitle_video_utils import hex_to_ass_color
     primary = hex_to_ass_color(font_color)
     outline = hex_to_ass_color(outline_color)
     segments_to_ass(
