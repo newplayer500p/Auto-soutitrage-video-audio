@@ -15,6 +15,8 @@ class ApiService {
     required String position,
     required String fontName,
     required int fontSize,
+    required String fontColor, // <-- ajouté
+    required String outlineColor, // <-- ajouté
   }) async {
     final url = '$baseUrl/video/process';
     final form = FormData();
@@ -23,6 +25,8 @@ class ApiService {
     form.fields.add(MapEntry('position', position));
     form.fields.add(MapEntry('font_name', fontName));
     form.fields.add(MapEntry('font_size', fontSize.toString()));
+    form.fields.add(MapEntry('font_color', fontColor));
+    form.fields.add(MapEntry('font_outline_color', outlineColor));
 
     // video file
     if (kIsWeb || videoFile.path == null) {

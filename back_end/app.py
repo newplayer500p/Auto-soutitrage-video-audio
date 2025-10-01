@@ -57,12 +57,13 @@ async def _run_full_pipeline(
     *,
     # pipeline parameters (exposés par le endpoint)
     language: str = "en",
-    whisper_model: str = "small",
+    whisper_model: str = "medium",
     device: str = "cuda",
     position: str = "bottom-center",
     font_name: str = "Arial",
     font_size: int = 24,
     font_color: str = "#FFFFFF",
+    font_outline_colors: str = "#000000",
     single_model: Optional[str] = "OK"
 ):
     """
@@ -131,7 +132,7 @@ async def _run_full_pipeline(
             font_name,
             adjusted_font_size,
             font_color,
-            "#000000",
+            font_outline_colors,
             position
         )
         result["ass_path"] = str(ass_path)
@@ -171,6 +172,8 @@ async def upload_and_process_video(
     position: str = Form("bottom-center"),
     font_name: str = Form("Arial"),
     font_size: int = Form(24),
+    font_color: str = Form("#FFFFFF"),
+    font_outline_color: str = Form("#000000"),
     file: UploadFile = File(...),
     transcript: Optional[UploadFile] = File(None)
 ):
@@ -203,7 +206,8 @@ async def upload_and_process_video(
         position=position,
         font_name=font_name,
         font_size=int(font_size),
-        font_color="#FFFFFF",
+        font_color=font_color,
+        font_outline_colors=font_outline_color
     )
 
     # convert paths to URLs served by StaticFiles (if files exist)

@@ -82,7 +82,7 @@ def get_voice_interface(wath_path: Union[str, Path], out_voice_path: Union[str, 
 def build_phrases_interface(
     audio_clear_path: Union[str, Path],
     language: str = "fr",
-    whisper_model: str = "small",
+    whisper_model: str = "medium",
     device: str = "cuda",
     reuse_models: bool = True
 ) -> Tuple[List[Dict[str, Any]], str]:

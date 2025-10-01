@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:front_end/pages/controls/show_download_option.dart';
 import 'package:front_end/pages/controls/upload_controlle.dart';
-import 'package:front_end/pages/widget_page/action_button.dart';
-import 'package:front_end/pages/widget_page/choix_font.dart';
-import 'package:front_end/pages/widget_page/choix_position.dart';
-import 'package:front_end/pages/widget_page/choix_size.dart';
-import 'package:front_end/pages/widget_page/header_card.dart';
+import 'package:front_end/pages/controls/action_button.dart';
+import 'package:front_end/pages/widget_page/choix_font_color.dart';
+import 'package:front_end/pages/widget_page/choix_font_outlined_color.dart';
+import 'package:front_end/pages/widget_page/choix_font_type.dart';
+import 'package:front_end/pages/widget_page/choix_str_position.dart';
+import 'package:front_end/pages/widget_page/choix_font_size.dart';
+import 'package:front_end/pages/card/header_card.dart';
 import '../services/api_service.dart';
 
 class UploadPage extends StatefulWidget {
@@ -23,6 +25,8 @@ class _UploadPageState extends State<UploadPage> {
   String _fontName = 'Arial';
   double _fontSize = 24;
   bool _isProcessing = false;
+  String _fontColorHex = '#FFFFFF'; // valeur par défaut blanc
+  String _fontOutlineHex = '#000000'; // valeur par défaut noir
 
   PlatformFile? _videoFile;
 
@@ -130,6 +134,8 @@ class _UploadPageState extends State<UploadPage> {
         position: _position,
         fontName: _fontName,
         fontSize: _fontSize.toInt(),
+        fontColor: _fontColorHex, // <-- ajouté
+        outlineColor: _fontOutlineHex, // <-- ajouté
       );
 
       Navigator.of(context).pop(); // Close progress dialog
@@ -274,6 +280,24 @@ class _UploadPageState extends State<UploadPage> {
                     FontChoice(
                       fontName: _fontName,
                       onChanged: (v) => setState(() => _fontName = v),
+                    ),
+
+                    const SizedBox(height: 12),
+                    Divider(),
+
+                    // Choix couleur du texte
+                    FontColorChoice(
+                      colorHex: _fontColorHex,
+                      onChanged: (hex) => setState(() => _fontColorHex = hex),
+                    ),
+
+                    const SizedBox(height: 12),
+                    Divider(),
+
+                    // Choix couleur du contour
+                    FontOutlineChoice(
+                      outlineHex: _fontOutlineHex,
+                      onChanged: (hex) => setState(() => _fontOutlineHex = hex),
                     ),
 
                     const SizedBox(height: 12),

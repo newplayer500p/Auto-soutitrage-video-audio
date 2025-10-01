@@ -88,7 +88,7 @@ def run_demucs(
     out_target: Path,
     *,
     single_sig: str = None,    # sig unique, ex: 'a1d90b5c' (si fourni on l'utilise comme clé de modèle)
-    model: str = "mdx_q",  # modèle par défaut si single_sig=None
+    model: str = "mdx",  # modèle par défaut si single_sig=None
     device: str = "cuda",   # ignoré par CLI sauf si cpu=True
     jobs: int = 1,
     use_cli: bool = True,   # si True utilisera la CLI, sinon (fallback) garderait l'API (non utilisée ici)
@@ -107,7 +107,7 @@ def run_demucs(
     force_gpu_cleanup()
 
     # decide model_key
-    model_key = "htdemucs" if (single_sig and single_sig != "") else model
+    model_key = "htdemucs_ft" if (single_sig and single_sig != "") else model
 
     # If using CLI -> run CLI child process
     if use_cli:

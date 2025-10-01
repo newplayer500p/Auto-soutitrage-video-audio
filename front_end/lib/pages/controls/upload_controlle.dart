@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:front_end/pages/widget_page/language_drop_down.dart';
+import 'package:front_end/pages/widget_page/choix_str_language.dart';
 import 'package:front_end/widgets/file_upload_card.dart';
 
 class UploadControls extends StatelessWidget {

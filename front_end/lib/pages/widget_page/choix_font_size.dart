@@ -92,9 +92,9 @@ class FontSizeChoice extends StatelessWidget {
               overlayShape: RoundSliderOverlayShape(overlayRadius: 16),
             ),
             child: Slider(
-              min: 12,
-              max: 36,
-              divisions: 24,
+              min: 16,
+              max: 72,
+              divisions: 28,
               label: fontSize.toInt().toString(),
               value: fontSize,
               onChanged: onChanged,
@@ -106,7 +106,7 @@ class FontSizeChoice extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: ['12', '18', '24', '30', '36'].map((size) {
+              children: ['16', '24', '34', '44', '54', "62", "72"].map((size) {
                 return Text(
                   size,
                   style: theme.textTheme.bodySmall?.copyWith(

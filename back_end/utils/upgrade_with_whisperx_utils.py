@@ -5,7 +5,7 @@ from typing import Optional, Tuple, Dict, Any, List
 import torch
 import whisperx
 
-from .transcribe_with_whisper_utils import transcribe_with_whisper_small
+from .transcribe_with_whisper_utils import transcribe_with_faster_whisper_auto
 
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
@@ -42,7 +42,7 @@ def _load_align_model(language_code: str, device: str, reuse: bool = True):
 def transcribe_and_align(
     audio_clear_path: Path,
     language: str = "en",                     # <-- par défaut EN si tu utilises whisper CLI en anglais
-    whisper_model: str = "small",
+    whisper_model: str = "medium",
     device: str = "cuda",
     reuse_models: bool = True,
 ) -> Tuple[Any, str]:
@@ -61,7 +61,7 @@ def transcribe_and_align(
     # -------------- 1) Transcription (choix du back-end) -----------------------
     try:
         logger.info("Transcription via whisper lib (transcribe_with_whisper_small)...")
-        result = transcribe_with_whisper_small(
+        result = transcribe_with_faster_whisper_auto(
             logger,
             audio_path=audio_clear_path,
             model_name=whisper_model,
