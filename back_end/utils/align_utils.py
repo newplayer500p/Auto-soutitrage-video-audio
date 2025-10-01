@@ -11,9 +11,9 @@ logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 
 def build_phrases(
     audio_clear_path: Path,
-    language: str = "en",
-    whisper_model: str = "medium",
-    device: str = "cuda",
+    language: str,
+    whisper_model: str,
+    device: str,
     reuse_models: bool = True,
 ) -> Tuple[List[Dict[str, Any]], str]:
     """

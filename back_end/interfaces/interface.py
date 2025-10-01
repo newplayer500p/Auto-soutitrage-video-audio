@@ -81,8 +81,8 @@ def get_voice_interface(wath_path: Union[str, Path], out_voice_path: Union[str, 
 # 3) Interface pour transcribe_align_and_build_phrases (phrase_segments, lang)
 def build_phrases_interface(
     audio_clear_path: Union[str, Path],
-    language: str = "fr",
-    whisper_model: str = "medium",
+    language: str,
+    whisper_model: str,
     device: str = "cuda",
     reuse_models: bool = True
 ) -> Tuple[List[Dict[str, Any]], str]:

@@ -12,9 +12,9 @@ except Exception as e:
 def transcribe_with_faster_whisper_auto(
     logger: logging.Logger,
     audio_path: Path,
-    model_name: str = "medium",     # mettre "medium" pour meilleure qualité que small
-    device: str = "cuda",
-    language: str = "en",
+    model_name: str,     # mettre "medium" pour meilleure qualité que small
+    device: str,
+    language: str,
     temperature: float = 0.0,
     beam_size: int = 5,
     reuse: bool = True,

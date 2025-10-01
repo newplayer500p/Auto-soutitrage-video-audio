@@ -56,14 +56,14 @@ async def _run_full_pipeline(
     out_dir: Path,
     *,
     # pipeline parameters (exposés par le endpoint)
-    language: str = "en",
-    whisper_model: str = "medium",
-    device: str = "cuda",
-    position: str = "bottom-center",
-    font_name: str = "Arial",
-    font_size: int = 24,
-    font_color: str = "#FFFFFF",
-    font_outline_colors: str = "#000000",
+    language: str,
+    whisper_model: str,
+    device: str,
+    position: str,
+    font_name: str,
+    font_size: int,
+    font_color: str,
+    font_outline_colors: str,
     single_model: Optional[str] = "OK"
 ):
     """
