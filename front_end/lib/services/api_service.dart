@@ -6,10 +6,10 @@ import 'package:path/path.dart' as p;
 
 class ApiService {
   final Dio _dio;
-  ApiService([Dio? dio]) : _dio = dio ?? Dio();
+  final String baseUrl;
+  ApiService(this.baseUrl, [Dio? dio]) : _dio = dio ?? Dio();
 
   Future<Map<String, dynamic>> uploadVideo({
-    String baseUrl = "http://localhost:8000",
     required PlatformFile videoFile,
     required String language,
     required String position,

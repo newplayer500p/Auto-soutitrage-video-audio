@@ -1,6 +1,9 @@
 # app.py
-from fastapi import FastAPI, UploadFile, File, Form
-from fastapi.responses import JSONResponse
+import asyncio
+import json
+import uuid
+from fastapi import FastAPI, UploadFile, File, Form, Request
+from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,7 +14,7 @@ from datetime import datetime
 import shutil
 import logging
 import traceback
-from typing import Optional
+from typing import Dict, Optional
 
 # importe tes interfaces (adapte si le module s'appelle différemment)
 from interfaces.interface import (
@@ -21,9 +24,10 @@ from interfaces.interface import (
     segments_to_ass_interface,
     burn_subtitles_into_video_interface
 )
-from utils.cleaner.clear_gpu_cache import cleanup_demucs_processes, force_gpu_cleanup
 from utils.helper.prob_video import get_video_resolution
 from utils.subtitle_config.choose_font_size import choose_font_size_for_video
+from utils.helper.notify_job import create_job_queue, init_job_state, notify_job, get_job_state, get_job_queue, cleanup_job
+from utils.helper.segment_to_dict import segment_to_dict
 
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 logger = logging.getLogger("app")
@@ -64,15 +68,22 @@ async def _run_full_pipeline(
     font_size: int,
     font_color: str,
     font_outline_colors: str,
-    single_model: Optional[str] = "OK"
+    single_model: Optional[str] = "OK",
+    job_id: Optional[str] = None
 ):
     """
     Appelle les interfaces (bloquantes) dans un thread pool et renvoie un dict résultat.
     """
-    result = {"ok": False}
+    
+    def push(event, payload):
+        if job_id:
+            notify_job(job_id, event, payload)
+    
     try:
+        
         # 1) extract audio (WAV)
         wav_out = out_dir / (video_path.stem + ".wav")
+        push("task_started", {"task": "extraction"})
         logger.info("Extraction audio -> %s", wav_out)
         extract_info = await run_in_threadpool(
             extract_audio_interface,
@@ -81,17 +92,39 @@ async def _run_full_pipeline(
             44100,
             2
         )
-        result["extract_info"] = extract_info
-        result["wav_path"] = str(wav_out)
+        push(
+            "task_finished", 
+            {
+                "task": "extraction",
+                "info": "Extraction de l'audio reussit.", 
+                "data": str(wav_out),
+                "download": "True"
+            }
+        )
+        
         
         # 2) optionally run spleeter to isolate vocals (get_voice)
-        voc = await run_in_threadpool(get_voice_interface, str(wav_out), str(out_dir), single_model)
+        push("task_started", {"task": "isolation_voix"})
+        voc = await run_in_threadpool(
+            get_voice_interface, 
+            str(wav_out), 
+            str(out_dir), 
+            single_model
+        )
         # get_voice_interface returns Path or empty string per your code; normalize
         voc_path_str = str(voc) if voc else ""
-        result["vocals_path"] = voc_path_str
-        
+        push(
+            "task_finished", 
+            {
+                "task": "isolation_voix",
+                "info": "Isolation du voix reussit.", 
+                "data": voc_path_str,
+                "download": "True"
+            }
+        )        
 
         # 3) transcribe & build phrase segments (from vocals if available else from wav)
+        push("task_started", {"task": "transcription"})
         audio_for_transcribe = Path(voc_path_str) if voc_path_str else wav_out
         logger.info("Transcription & alignement sur -> %s", audio_for_transcribe)
         phrase_segments, detected_lang = await run_in_threadpool(
@@ -102,22 +135,35 @@ async def _run_full_pipeline(
             device,
             True,  # reuse_models
         )
-                    
-        result["language_detected"] = detected_lang
-        result["n_phrase_segments"] = len(phrase_segments)
+        
+        safe_preview = [segment_to_dict(s) for s in phrase_segments[:3]]
+        
+        safe_payload = {
+            "n_segments": len(phrase_segments),
+            "language_detected": detected_lang,
+            "preview": safe_preview,
+        }
+
+        push(
+            "task_finished", 
+            {
+                "task": "transcription",
+                "info": "Transcription reussie", 
+                "data": safe_payload,
+                "download": "False"
+            }
+        )
         
         try:
             video_w, video_h = await run_in_threadpool(get_video_resolution, video_path)
         except Exception:
             # fallback to 1920x1080 if ffprobe absent/faille
             video_w, video_h = 1920, 1080
-
         # Adjust font_size proportionally to video height (optional, prevents too small fonts on hi-res)
-       
         adjusted_font_size = choose_font_size_for_video(video_h, font_size)
 
 
-        
+        push("task_started", {"task": "creation_ass"})
         # 4) write ASS only (we no longer produce .srt)
         out_dir_str = out_dir / "sous_titre"
         out_dir_str.mkdir(parents=True, exist_ok=True)
@@ -135,35 +181,89 @@ async def _run_full_pipeline(
             font_outline_colors,
             position
         )
-        result["ass_path"] = str(ass_path)
-
-
+        push(
+            "task_finished", 
+            {
+                "task": "creation_ass",
+                "info": "Creation du fichier sous titre .ass reussit",
+                "data": str(ass_path),
+                "download": "True"
+            }
+        )
+        
 
         # 5) burn subtitles
         subtitled_out = out_dir / (video_path.stem + "_sub" + video_path.suffix)
         logger.info("Incrustation SRT -> %s", subtitled_out)
-        # remplace la partie où tu appelles burn_subtitles_into_video_interface par :
+        push("task_started", {"task": "assemblage"})
+
         await run_in_threadpool(
             burn_subtitles_into_video_interface,
             str(video_path),
             str(ass_path),
             str(subtitled_out)
         )
-
+        push(
+            "task_finished", 
+            {
+                "task": "assemblage",
+                "info": "Assemble du fichier sous titre et video reussit. ",
+                "data": str(subtitled_out),
+                "download": "True"
+            }
+        )
         
-        result["subtitled_video"] = str(subtitled_out)
-        
-        result["ok"] = True
-        return result
+        push(
+            "finished", 
+            {
+                "task": "Terminer",
+                "info": "Video sous-titrer pret a telecharger",
+                "data": str(subtitled_out),
+                "download": "True"
+            }
+        )
 
     except Exception as e:
+        push("error", {"error": str(e)})
         logger.error("Erreur pipeline: %s\n%s", e, traceback.format_exc())
-        
-        await run_in_threadpool(cleanup_demucs_processes)
-        await run_in_threadpool(force_gpu_cleanup)
-        result["error"] = str(e)
-        result["traceback"] = traceback.format_exc()
-        return result
+    
+@app.get("/stream/{job_id}")
+async def stream_job(job_id: str, request: Request):
+    
+    q = get_job_queue(job_id)
+    if q is None:
+        # retourne 404 simple si job inconnu
+        return JSONResponse({"error": "job not found"}, status_code=404)
+    
+    async def event_generator():
+        try:
+            while True:
+                # si le client ferme la connexion, on arrête
+                if await request.is_disconnected():
+                    break
+                try:
+                    msg = await asyncio.wait_for(q.get(), timeout=15.0)
+                except asyncio.TimeoutError:
+                    # envoie un keep-alive commenté (optionnel) pour éviter timeouts intermediaries
+                    yield ":\n\n"
+                    continue
+
+                # format SSE: data: <json>\n\n
+                yield f"data: {msg}\n\n"
+
+                # si event "finished" ou "error", on peut fermer la queue
+                try:
+                    obj = json.loads(msg)
+                    if obj.get("event") in ("finished", "error"):
+                        break
+                except Exception:
+                    pass
+
+        finally:
+            # cleanup: supprimer la queue si elle existe
+            cleanup_job(job_id)
+
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 
 @app.post("/video/process")
@@ -175,7 +275,6 @@ async def upload_and_process_video(
     font_color: str = Form("#FFFFFF"),
     font_outline_color: str = Form("#000000"),
     file: UploadFile = File(...),
-    transcript: Optional[UploadFile] = File(None)
 ):
     """
     Endpoint upload + process.
@@ -183,54 +282,61 @@ async def upload_and_process_video(
     - Lance la pipeline et retourne JSON avec chemins relatifs si succès.
     NOTE: This endpoint will run the pipeline synchronously (but inside a threadpool).
     """
+    # create job id and queue/state
+    job_id = str(uuid.uuid4())
+    create_job_queue(job_id)
+    init_job_state(job_id)
+
     # prepare output directory for this job
     job_dir = _unique_output_dir(UPLOAD_DIR, prefix="job")
+    
     # save video
     video_path = job_dir / file.filename
     with open(video_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    transcript_path = None
-    if transcript is not None:
-        transcript_path = job_dir / transcript.filename
-        with open(transcript_path, "wb") as buffer:
-            shutil.copyfileobj(transcript.file, buffer)
-
+    # envoyer event upload saved
+    notify_job(
+        job_id, 
+        "task_finished", 
+        {
+            "task": "upload",
+            "info": "Assemble du fichier sous titre et video reussit. ",
+            "data": str(video_path),
+            "download": "True"
+        }
+    )
+    
+    # snapshot initial des tasks (pending + upload done)
+    initial_state = get_job_state(job_id) or {}
+    
+    resp_initial = {
+        "job_id": job_id,
+        "tasks": list(initial_state.values()),
+    }
+    
     # run pipeline
-    result = await _run_full_pipeline(
-        video_path,
-        job_dir,
-        language=language,
-        whisper_model="small",
-        device="cuda",
-        position=position,
-        font_name=font_name,
-        font_size=int(font_size),
-        font_color=font_color,
-        font_outline_colors=font_outline_color
+    asyncio.create_task(
+        _run_full_pipeline(
+            video_path,
+            job_dir,
+            language=language,
+            whisper_model="small",
+            device="cuda",
+            position=position,
+            font_name=font_name,
+            font_size=int(font_size),
+            font_color=font_color,
+            font_outline_colors=font_outline_color,
+            job_id=job_id
+        )
     )
 
-    # convert paths to URLs served by StaticFiles (if files exist)
-    def rel_url(p: str):
-        if not p:
-            return ""
-        p = Path(p)
-        try:
-            return f"/uploads/{p.relative_to(UPLOAD_DIR).as_posix()}"
-        except Exception:
-            return str(p)
+    return JSONResponse(content=resp_initial, status_code=202)
 
-    resp = {
-        "job_dir": str(job_dir),
-        "video": f"/uploads/{video_path.relative_to(UPLOAD_DIR).as_posix()}",
-        "wav": rel_url(result.get("wav_path", "")),
-        "vocals": rel_url(result.get("vocals_path", "")),
-        "ass": rel_url(result.get("ass_path", "")),
-        "subtitled_video": rel_url(result.get("subtitled_video", "")),
-        "language_detected": result.get("language_detected"),
-        "extract_info": result.get("extract_info"),
-        "ok": result.get("ok", False),
-        "error": result.get("error"),
-    }
-    status = 200 if result.get("ok") else 500
-    return JSONResponse(content=resp, status_code=status)
+@app.get("/job/{job_id}")
+async def get_job_status(job_id: str):
+    state = get_job_state(job_id)
+    if state is None:
+        return JSONResponse({"error": "job not found"}, status_code=404)
+    return JSONResponse({"job_id": job_id, "tasks": list(state.values())}, status_code=200)

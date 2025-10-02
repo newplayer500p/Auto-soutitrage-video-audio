@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:front_end/pages/controls/show_download_option.dart';
 import 'package:front_end/pages/controls/upload_controlle.dart';
 import 'package:front_end/pages/controls/action_button.dart';
 import 'package:front_end/pages/widget_page/choix_font_color.dart';
@@ -10,6 +9,7 @@ import 'package:front_end/pages/widget_page/choix_font_type.dart';
 import 'package:front_end/pages/widget_page/choix_str_position.dart';
 import 'package:front_end/pages/widget_page/choix_font_size.dart';
 import 'package:front_end/pages/card/header_card.dart';
+import 'package:front_end/widgets/processing_page.dart';
 import '../services/api_service.dart';
 
 class UploadPage extends StatefulWidget {
@@ -59,16 +59,6 @@ class _UploadPageState extends State<UploadPage> {
     );
   }
 
-  void _showSuccess(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.green,
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
-  }
-
   bool _validateForm() {
     if (_videoFile == null) {
       _showError('Veuillez sélectionner une vidéo');
@@ -78,83 +68,42 @@ class _UploadPageState extends State<UploadPage> {
     return true;
   }
 
-  String makeAbsolute(String url) {
-    try {
-      final u = Uri.parse(url);
-      if (u.isAbsolute) return url;
-    } catch (_) {}
-    // _backendBase est défini dans ton state
-    return '$_backendBase${url.startsWith('/') ? '' : '/'}$url';
-  }
-
   Future<void> _submit() async {
     if (!_validateForm()) return;
 
     setState(() => _isProcessing = true);
 
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => AlertDialog(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        content: Center(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'Traitement en cours...',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-
     try {
-      final api = ApiService();
+      final api = ApiService(_backendBase);
       final response = await api.uploadVideo(
-        baseUrl: _backendBase,
         videoFile: _videoFile!,
         language: _videoLanguage,
         position: _position,
         fontName: _fontName,
         fontSize: _fontSize.toInt(),
-        fontColor: _fontColorHex, // <-- ajouté
-        outlineColor: _fontOutlineHex, // <-- ajouté
+        fontColor: _fontColorHex,
+        outlineColor: _fontOutlineHex,
       );
 
-      Navigator.of(context).pop(); // Close progress dialog
+      // Si le backend renvoie job_id (nouveau comportement)
+      if (response.containsKey('job_id')) {
+        final String jobId = response['job_id'] as String;
+        final List<Map<String, dynamic>> tasks =
+            (response['tasks'] as List<dynamic>? ?? [])
+                .map((t) => Map<String, dynamic>.from(t as Map))
+                .toList();
 
-      if (response['ok'] == true) {
-        _showSuccess("Traitement effectuer");
-
-        final downloadMap = {
-          "video": makeAbsolute(response["video"] ?? ""),
-          "vocals": makeAbsolute(response["vocals"] ?? ""),
-          "srt": makeAbsolute(response["srt"] ?? ""),
-          "subtitled": makeAbsolute(response["subtitled_video"] ?? ""),
-        };
-
-        // Option: Navigate to result page or show preview
-        showDownloadOptions(context, downloadMap);
-      } else {
-        final error = response['error'] ?? 'Erreur inconnue';
-        _showError('Erreur lors du traitement: $error');
+        // ouvre la page ProcessingPage qui s'abonne au SSE /stream/{jobId}
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => ProcessingPage(
+              baseUrl: _backendBase,
+              jobId: jobId,
+              initialTasks: tasks,
+            ),
+          ),
+        );
+        return;
       }
     } catch (e) {
       Navigator.of(context).pop();
