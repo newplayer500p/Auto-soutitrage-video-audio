@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Optional, List, Dict, Any, Tuple, Union
 import logging
 
+from utils.subtitle_audio_utils import build_video_from_wav
 from utils.align_utils import build_phrases
 from utils.extract_audio_utils import extract_audio
 from utils.subtitle_video_utils import burn_subtitles_into_video
@@ -139,27 +140,79 @@ def segments_to_ass_interface(
 
 # 5) Interface pour burn_subtitles_into_video (retourne Path)
 def burn_subtitles_into_video_interface(
-    input_video: Union[str, Path],
+    input: Union[str, Path],
     input_srt: Union[str, Path],
-    output_video: Optional[Union[str, Path]] = None
+    output_video: Optional[Union[str, Path]] = None,
+    *,
+    is_audio: bool = False,
+    fond: Optional[str] = None,
+    show_wav_signal: bool = False,
 ) -> Path:
     """
-    Wrapper safer pour burn_subtitles_into_video.
-    - Vérifie que input_video et input_srt existent.
-    - Crée parent de output si nécessaire.
-    - Retourne Path du fichier vidéo produit.
-    """
-    input_video = Path(input_video)
-    input_srt = Path(input_srt)
-    if not input_video.exists():
-        raise FileNotFoundError(f"Vidéo introuvable: {input_video}")
-    if not input_srt.exists():
-        raise FileNotFoundError(f"SRT introuvable: {input_srt}")
+    Wrapper safe pour deux cas :
+      - si is_audio == True : l'input est un fichier audio -> on appelle build_video_from_wav
+      - sinon : l'input est une vidéo -> on appelle burn_subtitles_into_video
 
-    out = burn_subtitles_into_video(
-        input_video=input_video,
-        input_srt=input_srt,
-        output_video=output_video
-    )
-    logger.info("Vidéo sous-titrée écrite: %s", out)
-    return out
+    Paramètres :
+      - input : chemin vers la vidéo ou l'audio (str | Path)
+      - input_srt : chemin vers le .srt/.ass (str | Path)
+      - output_video : chemin de sortie optionnel (str | Path). Si None, un fichier temporaire est créé.
+      - is_audio : bool, si True considère `input` comme audio.
+      - fond : optionnel, chemin vers image de fond OU couleur hex (transmis à build_video_from_wav si is_audio True)
+      - show_wav_signal : bool, transmis à build_video_from_wav si is_audio True
+    Retourne :
+      - Path vers le fichier vidéo généré.
+    """
+    input = Path(input)
+    input_srt = Path(input_srt)
+
+    if not input.exists():
+        raise FileNotFoundError(f"Fichier d'entrée introuvable: {input}")
+    if not input_srt.exists():
+        raise FileNotFoundError(f"Fichier de sous-titres introuvable: {input_srt}")
+
+    out_path = Path(output_video)
+    
+    # crée le répertoire parent si nécessaire
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Choix de la voie selon is_audio
+    if is_audio:
+        # input est un fichier audio -> on génère une vidéo depuis l'audio
+        logger.info("Input considéré comme audio. Génération vidéo depuis l'audio avec les sous-titres.")
+        # build_video_from_wav attend (wav_path, ass_path, fond=..., show_wav_signal=..., out_path=...)
+        # ATTENTION: build_video_from_wav doit être importée dans le scope où tu colles cette interface.
+        try:
+            out = build_video_from_wav(
+                wav_path=input,
+                ass_path=input_srt,
+                fond=fond,
+                show_wav_signal=show_wav_signal,
+                out_path=str(out_path)
+            )
+        except Exception as e:
+            logger.exception("Erreur lors de build_video_from_wav: %s", e)
+            raise
+    else:
+        # input est une vidéo -> on brûle les sous-titres sur la vidéo existante
+        logger.info("Input considéré comme vidéo. Incrustation des sous-titres sur la vidéo.")
+        if fond is not None or show_wav_signal:
+            logger.warning("Les options 'fond' et 'show_wav_signal' sont ignorées pour le mode vidéo (is_audio=False).")
+        # burn_subtitles_into_video doit être importée dans le scope où tu colles cette interface.
+        try:
+            out = burn_subtitles_into_video(
+                input_video=input,
+                input_srt=input_srt,
+                output_video=str(out_path)
+            )
+        except Exception as e:
+            logger.exception("Erreur lors de burn_subtitles_into_video: %s", e)
+            raise
+
+    out_path = Path(out)
+    if not out_path.exists():
+        # si la fonction appelée n'a pas levé d'erreur mais n'a pas produit le fichier
+        raise FileNotFoundError(f"Le fichier de sortie attendu n'a pas été trouvé: {out_path}")
+
+    logger.info("Vidéo produite: %s", out_path)
+    return out_path

@@ -69,7 +69,10 @@ async def _run_full_pipeline(
     font_color: str,
     font_outline_colors: str,
     single_model: Optional[str] = "OK",
-    job_id: Optional[str] = None
+    is_audio: bool = False,
+    fond: Optional[str] = None,
+    show_wav_signal: bool = False,
+    job_id: Optional[str] = None,
 ):
     """
     Appelle les interfaces (bloquantes) dans un thread pool et renvoie un dict résultat.
