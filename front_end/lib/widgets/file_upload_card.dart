@@ -38,6 +38,9 @@ class FileUploadCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isSmallScreen = screenWidth < 500;
+
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -45,195 +48,165 @@ class FileUploadCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // En-tête avec icône
-            Row(
-              children: [
-                Icon(
-                  icon,
-                  size: 24,
-                  color: isDarkMode
-                      ? Colors.blue.shade200
-                      : Colors.blue.shade700,
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Text(
-                        title,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: isDarkMode
-                              ? Colors.white
-                              : Colors.blue.shade800,
-                        ),
-                      ),
-                      if (required) ...[
-                        const SizedBox(width: 4),
-                        Text(
-                          '*',
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            _header(), // icône + titre
+
             const SizedBox(height: 16),
 
-            // Contenu principal
-            IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Partie gauche (statut) — prend tout l'espace restant
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: isDarkMode
-                            ? Colors.grey.shade900.withOpacity(0.3)
-                            : Colors.grey.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: isDarkMode
-                              ? Colors.grey.shade600
-                              : Colors.grey.shade300,
-                          width: 1,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            file != null ? Icons.check_circle : Icons.info,
-                            size: 20,
-                            color: file != null
-                                ? Colors.green
-                                : (isDarkMode
-                                      ? Colors.grey.shade400
-                                      : Colors.grey.shade600),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  file != null
-                                      ? 'Fichier sélectionné'
-                                      : 'En attente de fichier',
-                                  style: theme.textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    color: isDarkMode
-                                        ? Colors.white
-                                        : Colors.grey.shade800,
-                                  ),
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  _getFileStatus(),
-                                  style: theme.textTheme.bodySmall?.copyWith(
-                                    color: isDarkMode
-                                        ? Colors.grey.shade400
-                                        : Colors.grey.shade600,
-                                  ),
-                                ),
-                                if (allowedExtensions != null) ...[
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    'Extensions autorisées: $allowedExtensions',
-                                    style: theme.textTheme.bodySmall?.copyWith(
-                                      color: isDarkMode
-                                          ? Colors.grey.shade500
-                                          : Colors.grey.shade500,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+            isSmallScreen
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _statusBox(),
+                      const SizedBox(height: 12),
+                      _uploadButton(),
+                    ],
+                  )
+                : Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: _statusBox()),
+                      const SizedBox(width: 16),
+                      // bouton flexible pour éviter overflow
+                      _uploadButton(),
+                    ],
                   ),
+          ],
+        ),
+      ),
+    );
+  }
 
-                  const SizedBox(width: 16),
+  // header simplifié
+  Widget _header() {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 24,
+          color: isDarkMode ? Colors.blue.shade200 : Colors.blue.shade700,
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  title,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: isDarkMode ? Colors.white : Colors.blue.shade800,
+                  ),
+                  overflow: TextOverflow.ellipsis, // <-- ajoute sécurité
+                ),
+              ),
+              if (required)
+                Text(
+                  '*',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
-                  // Partie droite (bouton) — s'étire à la même hauteur que la partie gauche
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(minWidth: 120),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: isDarkMode
-                                ? [Colors.blue.shade700, Colors.blue.shade800]
-                                : [Colors.blue.shade500, Colors.blue.shade600],
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.blue.withOpacity(0.3),
-                              blurRadius: 8,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        // IMPORTANT : le SizedBox avec height: double.infinity permet au bouton
-                        // d'occuper toute la hauteur fournie par l'IntrinsicHeight parent.
-                        child: SizedBox(
-                          height: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: onPressed,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              foregroundColor: Colors.white,
-                              shadowColor: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 14,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Icons.file_upload,
-                                  size: 20,
-                                  color: Colors.white,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  buttonText,
-                                  style: theme.textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+  // bouton upload
+  Widget _uploadButton() {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.file_upload, size: 20),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              buttonText,
+              style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white),
+              overflow: TextOverflow.ellipsis, // <-- empêche overflow
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _statusBox() {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: isDarkMode
+            ? Colors.grey.shade900.withOpacity(0.3)
+            : Colors.grey.shade50,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: isDarkMode ? Colors.grey.shade600 : Colors.grey.shade300,
+          width: 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            file != null ? Icons.check_circle : Icons.info,
+            size: 20,
+            color: file != null
+                ? Colors.green
+                : (isDarkMode ? Colors.grey.shade400 : Colors.grey.shade600),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  file != null
+                      ? 'Fichier sélectionné'
+                      : 'En attente de fichier',
+                  maxLines: 1,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: isDarkMode ? Colors.white : Colors.grey.shade800,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  _getFileStatus(),
+                  maxLines: 1,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: isDarkMode
+                        ? Colors.grey.shade400
+                        : Colors.grey.shade600,
+                  ),
+                ),
+                if (allowedExtensions != null) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    'Extensions autorisées: $allowedExtensions',
+                    maxLines: 1,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: isDarkMode
+                          ? Colors.grey.shade500
+                          : Colors.grey.shade500,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
                 ],
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

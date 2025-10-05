@@ -107,7 +107,7 @@ def run_demucs(
     force_gpu_cleanup()
 
     # decide model_key
-    model_key = "htdemucs_ft" if (single_sig and single_sig != "") else model
+    model_key = "htdemucs" if (single_sig and single_sig != "") else model
 
     # If using CLI -> run CLI child process
     if use_cli:

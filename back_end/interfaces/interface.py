@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Optional, List, Dict, Any, Tuple, Union
 import logging
 
-from utils.subtitle_audio_utils import build_video_from_wav
+from utils.create_video_from_audio_utils import build_video_from_wav
 from utils.align_utils import build_phrases
 from utils.extract_audio_utils import extract_audio
 from utils.subtitle_video_utils import burn_subtitles_into_video
@@ -143,7 +143,6 @@ def burn_subtitles_into_video_interface(
     input: Union[str, Path],
     input_srt: Union[str, Path],
     output_video: Optional[Union[str, Path]] = None,
-    *,
     is_audio: bool = False,
     fond: Optional[str] = None,
     show_wav_signal: bool = False,
@@ -179,35 +178,28 @@ def burn_subtitles_into_video_interface(
     # Choix de la voie selon is_audio
     if is_audio:
         # input est un fichier audio -> on génère une vidéo depuis l'audio
-        logger.info("Input considéré comme audio. Génération vidéo depuis l'audio avec les sous-titres.")
+        logger.info("Input considéré comme audio. Génération vidéo depuis l'audio.")
         # build_video_from_wav attend (wav_path, ass_path, fond=..., show_wav_signal=..., out_path=...)
         # ATTENTION: build_video_from_wav doit être importée dans le scope où tu colles cette interface.
         try:
-            out = build_video_from_wav(
+            input = build_video_from_wav(
                 wav_path=input,
-                ass_path=input_srt,
                 fond=fond,
-                show_wav_signal=show_wav_signal,
-                out_path=str(out_path)
             )
         except Exception as e:
             logger.exception("Erreur lors de build_video_from_wav: %s", e)
             raise
-    else:
-        # input est une vidéo -> on brûle les sous-titres sur la vidéo existante
-        logger.info("Input considéré comme vidéo. Incrustation des sous-titres sur la vidéo.")
-        if fond is not None or show_wav_signal:
-            logger.warning("Les options 'fond' et 'show_wav_signal' sont ignorées pour le mode vidéo (is_audio=False).")
-        # burn_subtitles_into_video doit être importée dans le scope où tu colles cette interface.
-        try:
-            out = burn_subtitles_into_video(
-                input_video=input,
-                input_srt=input_srt,
-                output_video=str(out_path)
-            )
-        except Exception as e:
-            logger.exception("Erreur lors de burn_subtitles_into_video: %s", e)
-            raise
+        
+    # input est une vidéo -> on brûle les sous-titres sur la vidéo existante
+    try:
+        out = burn_subtitles_into_video(
+            input_video=input,
+            input_srt=input_srt,
+            output_video=str(out_path)
+        )
+    except Exception as e:
+        logger.exception("Erreur lors de burn_subtitles_into_video: %s", e)
+        raise
 
     out_path = Path(out)
     if not out_path.exists():

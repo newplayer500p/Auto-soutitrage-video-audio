@@ -2,7 +2,7 @@
 import asyncio
 import json
 import uuid
-from fastapi import FastAPI, UploadFile, File, Form, Request
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
@@ -14,7 +14,7 @@ from datetime import datetime
 import shutil
 import logging
 import traceback
-from typing import Dict, Optional
+from typing import Optional
 
 # importe tes interfaces (adapte si le module s'appelle différemment)
 from interfaces.interface import (
@@ -24,10 +24,12 @@ from interfaces.interface import (
     segments_to_ass_interface,
     burn_subtitles_into_video_interface
 )
-from utils.helper.prob_video import get_video_resolution
 from utils.subtitle_config.choose_font_size import choose_font_size_for_video
 from utils.helper.notify_job import create_job_queue, init_job_state, notify_job, get_job_state, get_job_queue, cleanup_job
 from utils.helper.segment_to_dict import segment_to_dict
+from utils.helper.convert_audio_to_wav import convert_audio_to_wav
+from utils.helper.prob_video import get_video_resolution
+from utils.helper.detect_is_audio import detect_is_audio_trues
 
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 logger = logging.getLogger("app")
@@ -56,7 +58,7 @@ def _unique_output_dir(base_dir: Path, prefix: str = "job") -> Path:
 
 
 async def _run_full_pipeline(
-    video_path: Path,
+    upload_path: Path,   # anciennement video_path ; peut être audio ou video selon is_audio
     out_dir: Path,
     *,
     # pipeline parameters (exposés par le endpoint)
@@ -71,7 +73,6 @@ async def _run_full_pipeline(
     single_model: Optional[str] = "OK",
     is_audio: bool = False,
     fond: Optional[str] = None,
-    show_wav_signal: bool = False,
     job_id: Optional[str] = None,
 ):
     """
@@ -83,28 +84,57 @@ async def _run_full_pipeline(
             notify_job(job_id, event, payload)
     
     try:
-        
-        # 1) extract audio (WAV)
-        wav_out = out_dir / (video_path.stem + ".wav")
-        push("task_started", {"task": "extraction"})
-        logger.info("Extraction audio -> %s", wav_out)
-        extract_info = await run_in_threadpool(
-            extract_audio_interface,
-            str(video_path),
-            str(wav_out),
-            44100,
-            2
-        )
-        push(
-            "task_finished", 
-            {
-                "task": "extraction",
-                "info": "Extraction de l'audio reussit.", 
-                "data": str(wav_out),
-                "download": "True"
-            }
-        )
-        
+        # Si l'entrée est audio, on convertit en .wav si nécessaire puis on saute l'étape d'extraction.
+        if is_audio:
+            push("task_started", {"task": "extraction"})
+            logger.info("Upload detecté comme audio. Préparation audio...")
+            # wav_out sera le WAV utilisé pour la suite
+            wav_out = out_dir / (upload_path.stem + ".wav")
+            if upload_path.suffix.lower() != ".wav":
+                # conversion
+                await run_in_threadpool(
+                    convert_audio_to_wav, 
+                    upload_path, 
+                    wav_out, 
+                    44100, 
+                    2
+                )
+            else:
+                # si c'est déjà un .wav, on le copie localement (sécurité)
+                shutil.copy2(upload_path, wav_out)
+            upload_path = wav_out
+            push(
+                "task_finished", 
+                {
+                    "task": "extraction",
+                    "info": "Extraction de l'audio reussit.",
+                    "data": str(wav_out),
+                    "download": "True",
+                }
+            )
+        else:
+            # cas vidéo: extraire l'audio depuis la vidéo (comme avant)
+            push("task_started", {"task": "extraction"})
+            logger.info("Extraction audio -> %s", out_dir / (upload_path.stem + ".wav"))
+            wav_out = out_dir / (upload_path.stem + ".wav")
+            # extract_audio_interface peut être lent -> run_in_threadpool
+            await run_in_threadpool(
+                extract_audio_interface,
+                str(upload_path),
+                str(wav_out),
+                44100,
+                2
+            )
+            push(
+                "task_finished",
+                {
+                    "task": "extraction",
+                    "info": "Extraction de l'audio reussit.",
+                    "data": str(wav_out),
+                    "download": "True",
+                },
+            )
+
         
         # 2) optionally run spleeter to isolate vocals (get_voice)
         push("task_started", {"task": "isolation_voix"})
@@ -157,12 +187,15 @@ async def _run_full_pipeline(
             }
         )
         
-        try:
-            video_w, video_h = await run_in_threadpool(get_video_resolution, video_path)
-        except Exception:
-            # fallback to 1920x1080 if ffprobe absent/faille
-            video_w, video_h = 1920, 1080
-        # Adjust font_size proportionally to video height (optional, prevents too small fonts on hi-res)
+        # Si upload était audio, on fixe une résolution par défaut
+        if is_audio:
+            video_w, video_h = 1280, 720
+        else:
+            try:
+                video_w, video_h = await run_in_threadpool(get_video_resolution, upload_path)
+            except Exception:
+                video_w, video_h = 1920, 1080
+
         adjusted_font_size = choose_font_size_for_video(video_h, font_size)
 
 
@@ -171,7 +204,7 @@ async def _run_full_pipeline(
         out_dir_str = out_dir / "sous_titre"
         out_dir_str.mkdir(parents=True, exist_ok=True)
 
-        ass_out = out_dir_str / (video_path.stem + ".ass")
+        ass_out = out_dir_str / (upload_path.stem + ".ass")
         logger.info("Écriture ASS -> %s", ass_out)
         ass_path = await run_in_threadpool(
             segments_to_ass_interface,
@@ -195,22 +228,24 @@ async def _run_full_pipeline(
         )
         
 
-        # 5) burn subtitles
-        subtitled_out = out_dir / (video_path.stem + "_sub" + video_path.suffix)
+        # si is_audio True -> on doit générer une vidéo depuis le wav + ass (build_video_from_wav)
+        subtitled_out = out_dir / (upload_path.stem + "_sub.mp4")
         logger.info("Incrustation SRT -> %s", subtitled_out)
         push("task_started", {"task": "assemblage"})
-
+        
         await run_in_threadpool(
             burn_subtitles_into_video_interface,
-            str(video_path),
+            str(upload_path),
             str(ass_path),
-            str(subtitled_out)
+            str(subtitled_out),
+            is_audio,
+            fond,
         )
         push(
             "task_finished", 
             {
                 "task": "assemblage",
-                "info": "Assemble du fichier sous titre et video reussit. ",
+                "info": "Assemblagww du fichier sous titre et video reussit. ",
                 "data": str(subtitled_out),
                 "download": "True"
             }
@@ -277,6 +312,8 @@ async def upload_and_process_video(
     font_size: int = Form(24),
     font_color: str = Form("#FFFFFF"),
     font_outline_color: str = Form("#000000"),
+    fond: Optional[str] = Form(None),                 # nouveau paramètre (image OU couleur hex)
+    fond_file: Optional[UploadFile] = File(None),      # <-- nouveau champ pour image
     file: UploadFile = File(...),
 ):
     """
@@ -293,10 +330,32 @@ async def upload_and_process_video(
     # prepare output directory for this job
     job_dir = _unique_output_dir(UPLOAD_DIR, prefix="job")
     
+    
     # save video
-    video_path = job_dir / file.filename
-    with open(video_path, "wb") as buffer:
+    upload_path = job_dir / file.filename
+    is_audio_detected = False
+    
+    with open(upload_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
+    
+    try:
+        is_audio_detected = detect_is_audio_trues(upload_path, logger)
+    except Exception as e:
+        logger.exception("Impossible de détecter le type de média, on supposera video. Erreur: %s", e)
+        
+    if fond_file is not None:
+        # validation simple
+        allowed = ("image/png", "image/jpeg", "image/webp")
+
+        if fond_file.content_type not in allowed:
+            raise HTTPException(status_code=400, detail="Type d'image de fond non autorisé")
+        
+        ext = Path(fond_file.filename).suffix or (".png")
+        fond = f"{str(job_dir)}/fond{ext}"
+        
+        with open(Path(fond), "wb") as buffer:
+            shutil.copyfileobj(fond_file.file, buffer)
+
 
     # envoyer event upload saved
     notify_job(
@@ -305,7 +364,8 @@ async def upload_and_process_video(
         {
             "task": "upload",
             "info": "Assemble du fichier sous titre et video reussit. ",
-            "data": str(video_path),
+            "data": str(upload_path),
+            "is_audio": is_audio_detected,
             "download": "True"
         }
     )
@@ -321,7 +381,7 @@ async def upload_and_process_video(
     # run pipeline
     asyncio.create_task(
         _run_full_pipeline(
-            video_path,
+            upload_path,            
             job_dir,
             language=language,
             whisper_model="small",
@@ -331,6 +391,8 @@ async def upload_and_process_video(
             font_size=int(font_size),
             font_color=font_color,
             font_outline_colors=font_outline_color,
+            is_audio=is_audio_detected,
+            fond=fond,
             job_id=job_id
         )
     )

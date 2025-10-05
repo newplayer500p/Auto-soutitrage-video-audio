@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 class HeaderCard extends StatelessWidget {
   final bool isDarkMode;
-  const HeaderCard({required this.isDarkMode, super.key});
+  final bool isAudio;
+  const HeaderCard({
+    required this.isDarkMode,
+    required this.isAudio,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,7 @@ class HeaderCard extends StatelessWidget {
           SizedBox(width: 12),
           Expanded(
             child: Text(
-              "Sélectionnez la langue puis une vidéo pour un sous-titrage automatique",
+              "Sélectionnez la langue puis une ${isAudio ? "Audio" : "Vidéo"} pour un sous-titrage automatique",
               style: theme.textTheme.bodyLarge,
             ),
           ),

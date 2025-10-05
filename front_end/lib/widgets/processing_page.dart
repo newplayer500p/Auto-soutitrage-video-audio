@@ -124,24 +124,20 @@ class _ProcessingPageState extends State<ProcessingPage> {
     } else if (event == 'task_finished') {
       final taskId = payload['task'] as String?;
       if (taskId != null) {
-        final dataOrInfo = payload.containsKey('data')
-            ? payload['data']
-            : (payload.containsKey('info') ? payload['info'] : payload);
         setState(() {
           tasksMap[taskId]?['status'] = 'done';
-          tasksMap[taskId]?['info'] = dataOrInfo;
-          // also store download flag if present
+          // info pour affichage humain
+          if (payload.containsKey('info')) {
+            tasksMap[taskId]?['info'] = payload['info'];
+          }
+          // data pour download
+          if (payload.containsKey('data')) {
+            tasksMap[taskId]?['data'] = payload['data'];
+          }
           if (payload.containsKey('download')) {
             tasksMap[taskId]?['download'] =
                 (payload['download'].toString().toLowerCase() == 'true');
           }
-        });
-      }
-    } else if (event == 'task_info') {
-      final taskId = payload['task'] as String?;
-      if (taskId != null) {
-        setState(() {
-          tasksMap[taskId]?['info'] = payload['info'];
         });
       }
     } else if (event == 'error') {
@@ -229,7 +225,7 @@ class _ProcessingPageState extends State<ProcessingPage> {
     // - si info est String => on suppose c'est un chemin relatif (ex: /uploads/...)
     // - si info est Map => on regarde 'data' (string) ou fouille tout map pour une string
     if (status == 'done' && (downloadFlag || _looksLikePath(infoRaw))) {
-      final path = _extractFirstPathFromInfo(infoRaw);
+      final path = t['data'] as String?; // <-- pour le download
       if (path != null && path.isNotEmpty) {
         final fullUrl = makeAbsolute(widget.baseUrl, path);
         final filename = path.split('/').last;
@@ -248,46 +244,10 @@ class _ProcessingPageState extends State<ProcessingPage> {
     if (info is String) {
       return info.contains("/uploads") || info.startsWith("/");
     }
-    if (info is Map) {
-      if (info.containsKey('data') && info['data'] is String) return true;
-      // quick scan for any string path
-      for (var v in info.values) {
-        if (v is String && (v.contains("/uploads") || v.startsWith("/"))) {
-          return true;
-        }
-        if (v is Map || v is List) {
-          final found = _extractFirstPathFromInfo(v);
-          if (found != null) return true;
-        }
-      }
-    }
     return false;
   }
 
   /// Retourne la première valeur string qui ressemble à un chemin/url dans `info`
-  String? _extractFirstPathFromInfo(dynamic info) {
-    if (info == null) return null;
-    if (info is String) return info;
-    if (info is Map) {
-      // prefer 'data'
-      if (info.containsKey('data')) {
-        final d = info['data'];
-        if (d is String) return d;
-        if (d is Map) {
-          for (var v in d.values) {
-            if (v is String) return v;
-          }
-        }
-      }
-    }
-    if (info is List) {
-      for (var item in info) {
-        final found = _extractFirstPathFromInfo(item);
-        if (found != null) return found;
-      }
-    }
-    return null;
-  }
 
   void _onDownload(String url, String filename) async {
     try {

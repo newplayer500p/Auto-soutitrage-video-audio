@@ -17,6 +17,9 @@ class ApiService {
     required int fontSize,
     required String fontColor, // <-- ajouté
     required String outlineColor, // <-- ajouté
+    String? fond, // ex "#000000" => envoyé en champ 'fond'
+    PlatformFile? fondFile, // envoyé en champ 'fond_file'
+    required bool showWavForm, // envoyé en champ 'show_wav_form'
   }) async {
     final url = '$baseUrl/video/process';
     final form = FormData();
@@ -27,6 +30,26 @@ class ApiService {
     form.fields.add(MapEntry('font_size', fontSize.toString()));
     form.fields.add(MapEntry('font_color', fontColor));
     form.fields.add(MapEntry('font_outline_color', outlineColor));
+    form.fields.add(MapEntry('show_wav_form', showWavForm ? 'true' : 'false'));
+
+    if (fond != null && fond.isNotEmpty) {
+      form.fields.add(MapEntry('fond', fond));
+    }
+
+    if ((fond == null || fond.isEmpty) && fondFile != null) {
+      if (kIsWeb || fondFile.path == null) {
+        final bytes = fondFile.bytes;
+        if (bytes == null) throw Exception('Fond image bytes are null (web).');
+        final mp = MultipartFile.fromBytes(bytes, filename: fondFile.name);
+        form.files.add(MapEntry('fond_file', mp));
+      } else {
+        final mp = await MultipartFile.fromFile(
+          fondFile.path!,
+          filename: p.basename(fondFile.name),
+        );
+        form.files.add(MapEntry('fond_file', mp));
+      }
+    }
 
     // video file
     if (kIsWeb || videoFile.path == null) {

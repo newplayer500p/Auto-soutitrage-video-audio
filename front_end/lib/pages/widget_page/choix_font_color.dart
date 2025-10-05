@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/pages/card/bg_color_picker.dart';
 import 'package:front_end/pages/helper/color_hex.dart';
 
 class FontColorChoice extends StatelessWidget {
@@ -11,384 +12,37 @@ class FontColorChoice extends StatelessWidget {
     required this.onChanged,
   });
 
-  void _openPicker(BuildContext ctx) {
-    final theme = Theme.of(ctx);
-    final isDarkMode = theme.brightness == Brightness.dark;
-    Color selected = Colors.transparent;
+  void _openPicker(BuildContext ctx) async {
+    // couleur initiale (catch si hex invalide)
+    Color initial;
     try {
-      selected = hexToColor(colorHex);
+      initial = hexToColor(colorHex);
     } catch (_) {
-      selected = Colors.white;
+      initial = Colors.white;
     }
+    // récupération de l'opacité depuis le channel alpha de la couleur
 
-    showModalBottomSheet(
+    final result = await showDialog(
       context: ctx,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      builder: (_) => BgColorPicker(
+        initialColor: initial.withOpacity(1.0), // passer couleur sans alpha
       ),
-      builder: (_) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: isDarkMode
-                        ? [Colors.grey.shade900, Colors.grey.shade800]
-                        : [Colors.blue.shade50, Colors.grey.shade50],
-                  ),
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(20),
-                  ),
-                ),
-                child: SafeArea(
-                  top: false,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                      horizontal: 20,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 4,
-                          decoration: BoxDecoration(
-                            color: isDarkMode
-                                ? Colors.grey.shade600
-                                : Colors.grey.shade400,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'Choisir la couleur du texte',
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: isDarkMode
-                                ? Colors.white
-                                : Colors.blue.shade800,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-
-                        // Preview amélioré
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 8),
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: isDarkMode
-                                ? const Color.fromARGB(255, 34, 34, 34)
-                                : const Color.fromARGB(255, 219, 219, 219),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: isDarkMode
-                                  ? Colors.grey.shade600
-                                  : Colors.grey.shade400,
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 16),
-                              // Texte d'aperçu amélioré
-                              Center(
-                                child: Text(
-                                  'Aperçu du texte',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    color: selected,
-                                    fontWeight: FontWeight.w700,
-                                    shadows: [
-                                      Shadow(
-                                        blurRadius: 2,
-                                        color: Colors.black.withOpacity(0.3),
-                                        offset: const Offset(1, 1),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              // Code couleur
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 6,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: selected.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: selected.withOpacity(0.5),
-                                  ),
-                                ),
-                                child: Text(
-                                  colorToHex(selected),
-                                  style: theme.textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    color: isDarkMode
-                                        ? Colors.white
-                                        : Colors.black87,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        const SizedBox(height: 16),
-
-                        // Palette de couleurs avec titre
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Text(
-                                'Couleurs fréquentes',
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: isDarkMode
-                                      ? Colors.white70
-                                      : Colors.black87,
-                                ),
-                              ),
-                            ),
-                            Wrap(
-                              runSpacing: 8,
-                              spacing: 8,
-                              children: commonHexColors.map((hex) {
-                                final col = hexToColor(hex);
-                                final isSelected =
-                                    colorToHex(col) == colorToHex(selected);
-                                return GestureDetector(
-                                  onTap: () {
-                                    setState(() => selected = col);
-                                  },
-                                  child: Container(
-                                    width: 44,
-                                    height: 44,
-                                    decoration: BoxDecoration(
-                                      color: col,
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: isSelected
-                                            ? Colors.white
-                                            : Colors.transparent,
-                                        width: 2,
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.2),
-                                          blurRadius: 2,
-                                          offset: const Offset(0, 1),
-                                        ),
-                                      ],
-                                    ),
-                                    child: isSelected
-                                        ? const Icon(
-                                            Icons.check,
-                                            color: Colors.white,
-                                            size: 20,
-                                          )
-                                        : null,
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        // Section saisie manuelle améliorée
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: isDarkMode ? Colors.black26 : Colors.white54,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.edit,
-                                    size: 18,
-                                    color: isDarkMode
-                                        ? Colors.white70
-                                        : Colors.black87,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    'Saisie manuelle',
-                                    style: theme.textTheme.bodyMedium?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      color: isDarkMode
-                                          ? Colors.white70
-                                          : Colors.black87,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Row(
-                                children: [
-                                  // Indicateur visuel de la couleur sélectionnée
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: selected,
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: isDarkMode
-                                            ? Colors.white30
-                                            : Colors.black26,
-                                        width: 1,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: TextFormField(
-                                      controller: TextEditingController(
-                                        text: colorToHex(selected),
-                                      ),
-                                      decoration: InputDecoration(
-                                        labelText: 'Code hexadécimal',
-                                        hintText: '#FF0000',
-                                        border: OutlineInputBorder(),
-                                        isDense: true,
-                                        prefixIcon: const Icon(
-                                          Icons.color_lens,
-                                          size: 20,
-                                        ),
-
-                                        filled: true,
-                                        fillColor: isDarkMode
-                                            ? Colors.grey.shade800
-                                            : Colors.white,
-                                        disabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: isDarkMode
-                                                ? const Color(0x4D313131)
-                                                : const Color(0x42CFCFCF),
-                                          ),
-                                        ),
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                              horizontal: 12,
-                                              vertical: 12,
-                                            ),
-                                      ),
-                                      onChanged: (value) {
-                                        final raw = value.trim();
-                                        if (raw.isEmpty) return;
-
-                                        // Support des formats avec et sans #
-                                        String hexValue = raw;
-                                        if (!hexValue.startsWith('#')) {
-                                          hexValue = '#$hexValue';
-                                        }
-
-                                        // Validation basique
-                                        if (hexValue.length == 7 ||
-                                            hexValue.length == 9) {
-                                          try {
-                                            final color = hexToColor(hexValue);
-                                            setState(() => selected = color);
-                                          } catch (_) {
-                                            // Ignorer les couleurs invalides
-                                          }
-                                        }
-                                      },
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  ElevatedButton.icon(
-                                    onPressed: () {
-                                      final hexOut = colorToHex(selected);
-                                      onChanged(hexOut);
-
-                                      // Feedback visuel avant fermeture
-                                      ScaffoldMessenger.of(ctx).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Couleur appliquée: $hexOut',
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                          duration: const Duration(
-                                            milliseconds: 800,
-                                          ),
-                                          behavior: SnackBarBehavior.floating,
-                                        ),
-                                      );
-
-                                      Future.delayed(
-                                        const Duration(milliseconds: 800),
-                                        () {
-                                          Navigator.pop(ctx);
-                                        },
-                                      );
-                                    },
-                                    icon: const Icon(Icons.check, size: 18),
-                                    label: const Text(
-                                      'Appliquer',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: isDarkMode
-                                          ? Colors.blue.shade600
-                                          : Colors.blue.shade700,
-                                      foregroundColor: Colors.white,
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 12,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              // Aide utilisateur
-                              Text(
-                                'Format: #RRGGBB ou #AARRGGBB (avec transparence)',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: isDarkMode
-                                      ? Colors.white60
-                                      : Colors.black54,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        const SizedBox(height: 16),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
     );
+
+    if (result == null) return; // annulation
+    if (result is Map && result.containsKey('color')) {
+      final Color pickedColor = (result['color'] as Color);
+      final String hexOut = colorToHex(pickedColor);
+      onChanged(hexOut);
+      // petit feedback
+      ScaffoldMessenger.of(ctx).showSnackBar(
+        SnackBar(
+          content: Text('Couleur appliquée : $hexOut'),
+          duration: const Duration(milliseconds: 800),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
   }
 
   @override

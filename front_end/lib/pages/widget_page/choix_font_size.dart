@@ -40,6 +40,8 @@ class FontSizeChoice extends StatelessWidget {
                 ),
               ),
 
+              Spacer(),
+
               // Affichage de la valeur actuelle
               Container(
                 padding: const EdgeInsets.symmetric(
