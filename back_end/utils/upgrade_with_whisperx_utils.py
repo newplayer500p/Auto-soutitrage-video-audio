@@ -93,4 +93,6 @@ def transcribe_and_align(
     detected_language = result.get("language", language)
     logger.info("Terminé: %d segments, langue détectée: %s", len(segments) if segments else 0, detected_language)
     
+    logger.info(segments)
+    
     return segments, detected_language

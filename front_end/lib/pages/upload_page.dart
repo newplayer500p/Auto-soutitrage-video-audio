@@ -11,6 +11,7 @@ import 'package:front_end/pages/widget_page/choix_str_position.dart';
 import 'package:front_end/pages/widget_page/choix_font_size.dart';
 import 'package:front_end/pages/card/header_card.dart';
 import 'package:front_end/pages/widget_page/fond_subtitle/wav_signale_option.dart';
+import 'package:front_end/services/task_model.dart';
 import 'package:front_end/widgets/processing_page.dart';
 import '../services/api_service.dart';
 
@@ -119,17 +120,21 @@ class _UploadPageState extends State<UploadPage> {
 
       if (response.containsKey('job_id')) {
         final String jobId = response['job_id'] as String;
-        final List<Map<String, dynamic>> tasks =
-            (response['tasks'] as List<dynamic>? ?? [])
-                .map((t) => Map<String, dynamic>.from(t as Map))
-                .toList();
+
+        // Convertir la liste de maps en liste de Task - NE PAS AJOUTER DE TÂCHE SUPPLEMENTAIRE
+        final List<Task> tasks = (response['tasks'] as List<dynamic>? ?? [])
+            .map((t) {
+              final map = Map<String, dynamic>.from(t as Map);
+              return Task.fromMap(map);
+            })
+            .toList();
 
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => ProcessingPage(
               baseUrl: _backendBase,
               jobId: jobId,
-              initialTasks: tasks,
+              initialTasks: tasks, // Le backend fournit déjà toutes les tâches
             ),
           ),
         );

@@ -1,0 +1,1411 @@
+[
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "build_video_from_wav",
+        "importPath": "utils.create_video_from_audio_utils",
+        "description": "utils.create_video_from_audio_utils",
+        "isExtraImport": true,
+        "detail": "utils.create_video_from_audio_utils",
+        "documentation": {}
+    },
+    {
+        "label": "build_phrases",
+        "importPath": "utils.align_utils",
+        "description": "utils.align_utils",
+        "isExtraImport": true,
+        "detail": "utils.align_utils",
+        "documentation": {}
+    },
+    {
+        "label": "extract_audio",
+        "importPath": "utils.extract_audio_utils",
+        "description": "utils.extract_audio_utils",
+        "isExtraImport": true,
+        "detail": "utils.extract_audio_utils",
+        "documentation": {}
+    },
+    {
+        "label": "burn_subtitles_into_video",
+        "importPath": "utils.subtitle_video_utils",
+        "description": "utils.subtitle_video_utils",
+        "isExtraImport": true,
+        "detail": "utils.subtitle_video_utils",
+        "documentation": {}
+    },
+    {
+        "label": "run_demucs",
+        "importPath": "utils.extract_voice_utils",
+        "description": "utils.extract_voice_utils",
+        "isExtraImport": true,
+        "detail": "utils.extract_voice_utils",
+        "documentation": {}
+    },
+    {
+        "label": "segments_to_ass",
+        "importPath": "utils.subtitle_config.segment_to_ass",
+        "description": "utils.subtitle_config.segment_to_ass",
+        "isExtraImport": true,
+        "detail": "utils.subtitle_config.segment_to_ass",
+        "documentation": {}
+    },
+    {
+        "label": "hex_to_ass_color",
+        "importPath": "utils.subtitle_config.convert_color",
+        "description": "utils.subtitle_config.convert_color",
+        "isExtraImport": true,
+        "detail": "utils.subtitle_config.convert_color",
+        "documentation": {}
+    },
+    {
+        "label": "psutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psutil",
+        "description": "psutil",
+        "detail": "psutil",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "deepcopy",
+        "importPath": "copy",
+        "description": "copy",
+        "isExtraImport": true,
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "signal",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "signal",
+        "description": "signal",
+        "detail": "signal",
+        "documentation": {}
+    },
+    {
+        "label": "shlex",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shlex",
+        "description": "shlex",
+        "detail": "shlex",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "unicodedata",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "unicodedata",
+        "description": "unicodedata",
+        "detail": "unicodedata",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "_ALIGNMENT_MAP",
+        "importPath": "utils.subtitle_config.subtitle_position",
+        "description": "utils.subtitle_config.subtitle_position",
+        "isExtraImport": true,
+        "detail": "utils.subtitle_config.subtitle_position",
+        "documentation": {}
+    },
+    {
+        "label": "segment_phrases",
+        "importPath": "utils.decoupage.segmenter",
+        "description": "utils.decoupage.segmenter",
+        "isExtraImport": true,
+        "detail": "utils.decoupage.segmenter",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup_demucs_processes",
+        "importPath": "utils.cleaner.clear_gpu_cache",
+        "description": "utils.cleaner.clear_gpu_cache",
+        "isExtraImport": true,
+        "detail": "utils.cleaner.clear_gpu_cache",
+        "documentation": {}
+    },
+    {
+        "label": "force_gpu_cleanup",
+        "importPath": "utils.cleaner.clear_gpu_cache",
+        "description": "utils.cleaner.clear_gpu_cache",
+        "isExtraImport": true,
+        "detail": "utils.cleaner.clear_gpu_cache",
+        "documentation": {}
+    },
+    {
+        "label": "whisperx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "whisperx",
+        "description": "whisperx",
+        "detail": "whisperx",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "UploadFile",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "File",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "StreamingResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "StaticFiles",
+        "importPath": "fastapi.staticfiles",
+        "description": "fastapi.staticfiles",
+        "isExtraImport": true,
+        "detail": "fastapi.staticfiles",
+        "documentation": {}
+    },
+    {
+        "label": "run_in_threadpool",
+        "importPath": "starlette.concurrency",
+        "description": "starlette.concurrency",
+        "isExtraImport": true,
+        "detail": "starlette.concurrency",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "traceback",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "traceback",
+        "description": "traceback",
+        "detail": "traceback",
+        "documentation": {}
+    },
+    {
+        "label": "extract_audio_interface",
+        "importPath": "interfaces.interface",
+        "description": "interfaces.interface",
+        "isExtraImport": true,
+        "detail": "interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "get_voice_interface",
+        "importPath": "interfaces.interface",
+        "description": "interfaces.interface",
+        "isExtraImport": true,
+        "detail": "interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "build_phrases_interface",
+        "importPath": "interfaces.interface",
+        "description": "interfaces.interface",
+        "isExtraImport": true,
+        "detail": "interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "segments_to_ass_interface",
+        "importPath": "interfaces.interface",
+        "description": "interfaces.interface",
+        "isExtraImport": true,
+        "detail": "interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "burn_subtitles_into_video_interface",
+        "importPath": "interfaces.interface",
+        "description": "interfaces.interface",
+        "isExtraImport": true,
+        "detail": "interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "choose_font_size_for_video",
+        "importPath": "utils.subtitle_config.choose_font_size",
+        "description": "utils.subtitle_config.choose_font_size",
+        "isExtraImport": true,
+        "detail": "utils.subtitle_config.choose_font_size",
+        "documentation": {}
+    },
+    {
+        "label": "create_job_queue",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "init_job_state",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "notify_job",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "get_job_state",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "get_job_queue",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup_job",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "segment_to_dict",
+        "importPath": "utils.helper.segment_to_dict",
+        "description": "utils.helper.segment_to_dict",
+        "isExtraImport": true,
+        "detail": "utils.helper.segment_to_dict",
+        "documentation": {}
+    },
+    {
+        "label": "convert_audio_to_wav",
+        "importPath": "utils.helper.convert_audio_to_wav",
+        "description": "utils.helper.convert_audio_to_wav",
+        "isExtraImport": true,
+        "detail": "utils.helper.convert_audio_to_wav",
+        "documentation": {}
+    },
+    {
+        "label": "get_video_resolution",
+        "importPath": "utils.helper.prob_video",
+        "description": "utils.helper.prob_video",
+        "isExtraImport": true,
+        "detail": "utils.helper.prob_video",
+        "documentation": {}
+    },
+    {
+        "label": "detect_is_audio_trues",
+        "importPath": "utils.helper.detect_is_audio",
+        "description": "utils.helper.detect_is_audio",
+        "isExtraImport": true,
+        "detail": "utils.helper.detect_is_audio",
+        "documentation": {}
+    },
+    {
+        "label": "lldb",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "lldb",
+        "description": "lldb",
+        "detail": "lldb",
+        "documentation": {}
+    },
+    {
+        "label": "extract_audio_interface",
+        "kind": 2,
+        "importPath": "back_end.interfaces.interface",
+        "description": "back_end.interfaces.interface",
+        "peekOfCode": "def extract_audio_interface(\n    input_video: Union[str, Path],\n    output_wav: Union[str, Path],\n    sample_rate: int = 44100,\n    channels: int = 2,\n    duration_threshold_seconds: int = 600,\n    timeout: int = 7200,\n) -> Dict[str, Any]:\n    \"\"\"\n    Wrapper safe pour extract_audio.",
+        "detail": "back_end.interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "get_voice_interface",
+        "kind": 2,
+        "importPath": "back_end.interfaces.interface",
+        "description": "back_end.interfaces.interface",
+        "peekOfCode": "def get_voice_interface(wath_path: Union[str, Path], out_voice_path: Union[str, Path], single_model: Optional[str]) -> Optional[Path]:\n    \"\"\"\n    Wrapper pour get_voice.\n    - Vérifie l'existence du fichier d'entrée.\n    - Crée le dossier de sortie si nécessaire.\n    - Retourne le Path du fichiers nettoyé ou None.\n    \"\"\"\n    logger.info(\"Separation voix: -> %s\", out_voice_path)\n    wath_path = Path(wath_path)\n    out_voice_path = Path(out_voice_path)",
+        "detail": "back_end.interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "build_phrases_interface",
+        "kind": 2,
+        "importPath": "back_end.interfaces.interface",
+        "description": "back_end.interfaces.interface",
+        "peekOfCode": "def build_phrases_interface(\n    audio_clear_path: Union[str, Path],\n    language: str,\n    whisper_model: str,\n    device: str = \"cuda\",\n    reuse_models: bool = True\n) -> Tuple[List[Dict[str, Any]], str]:\n    \"\"\"\n    Wrapper pour transcribe_align_and_build_phrases.\n    - Vérifie que le fichier audio existe.",
+        "detail": "back_end.interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "segments_to_ass_interface",
+        "kind": 2,
+        "importPath": "back_end.interfaces.interface",
+        "description": "back_end.interfaces.interface",
+        "peekOfCode": "def segments_to_ass_interface(\n    segments: List[Dict[str, Any]],\n    output_ass_path: Union[str, Path],\n    playresx: int = 1920,\n    playresy: int = 1080,\n    font_name: str = \"Arial\",\n    font_size: int = 36,\n    font_color: str = \"#FFFFFF\",\n    outline_color: str = \"#000000\",\n    position: str = \"top-center\",",
+        "detail": "back_end.interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "burn_subtitles_into_video_interface",
+        "kind": 2,
+        "importPath": "back_end.interfaces.interface",
+        "description": "back_end.interfaces.interface",
+        "peekOfCode": "def burn_subtitles_into_video_interface(\n    input: Union[str, Path],\n    input_srt: Union[str, Path],\n    output_video: Optional[Union[str, Path]] = None,\n    is_audio: bool = False,\n    fond: Optional[str] = None,\n    show_wav_signal: bool = False,\n) -> Path:\n    \"\"\"\n    Wrapper safe pour deux cas :",
+        "detail": "back_end.interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.interfaces.interface",
+        "description": "back_end.interfaces.interface",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO, format=\"[%(levelname)s] %(message)s\")\ndef _ensure_parent(path: Union[str, Path]) -> Path:\n    p = Path(path)\n    if not p.parent.exists():\n        p.parent.mkdir(parents=True, exist_ok=True)\n    return p\n# 1) Interface pour extract_audio\ndef extract_audio_interface(\n    input_video: Union[str, Path],",
+        "detail": "back_end.interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup_demucs_processes",
+        "kind": 2,
+        "importPath": "back_end.utils.cleaner.clear_gpu_cache",
+        "description": "back_end.utils.cleaner.clear_gpu_cache",
+        "peekOfCode": "def cleanup_demucs_processes():\n    \"\"\"Nettoie tous les processus Demucs restants\"\"\"\n    try:\n        for proc in psutil.process_iter(['pid', 'name', 'cmdline']):\n            try:\n                # Chercher les processus Demucs\n                if proc.info['cmdline'] and any('demucs' in cmd.lower() for cmd in proc.info['cmdline']):\n                    print(f\"Termination du processus Demucs: {proc.info['pid']}\")\n                    proc.terminate()\n                    proc.wait(timeout=5)",
+        "detail": "back_end.utils.cleaner.clear_gpu_cache",
+        "documentation": {}
+    },
+    {
+        "label": "force_gpu_cleanup",
+        "kind": 2,
+        "importPath": "back_end.utils.cleaner.clear_gpu_cache",
+        "description": "back_end.utils.cleaner.clear_gpu_cache",
+        "peekOfCode": "def force_gpu_cleanup():\n    \"\"\"Force le nettoyage GPU après Demucs\"\"\"\n    try:\n        if torch.cuda.is_available():\n            torch.cuda.empty_cache()\n            torch.cuda.synchronize()\n        import gc\n        gc.collect()\n    except Exception as e:\n        print(f\"Erreur lors du nettoyage GPU: {e}\")",
+        "detail": "back_end.utils.cleaner.clear_gpu_cache",
+        "documentation": {}
+    },
+    {
+        "label": "flatten_aligned",
+        "kind": 2,
+        "importPath": "back_end.utils.decoupage.segmenter",
+        "description": "back_end.utils.decoupage.segmenter",
+        "peekOfCode": "def flatten_aligned(aligned_segments: List[Dict[str, Any]]) -> List[Dict[str, Any]]:\n    \"\"\"\n    Flatten aligned_segments -> list of words with start,end,text and origin segment idx.\n    \"\"\"\n    out = []\n    for seg_idx, seg in enumerate(aligned_segments):\n        seg_start = _float(seg.get(\"start\", 0.0))\n        seg_end = _float(seg.get(\"end\", seg_start))\n        words = seg.get(\"words\") or []\n        for w in words:",
+        "detail": "back_end.utils.decoupage.segmenter",
+        "documentation": {}
+    },
+    {
+        "label": "split_on_silences",
+        "kind": 2,
+        "importPath": "back_end.utils.decoupage.segmenter",
+        "description": "back_end.utils.decoupage.segmenter",
+        "peekOfCode": "def split_on_silences(words: List[Dict[str, Any]], silence_threshold: float) -> List[List[Dict[str, Any]]]:\n    \"\"\"\n    Split list of words into chunks where gaps > silence_threshold.\n    \"\"\"\n    if not words:\n        return []\n    chunks = []\n    cur = [words[0]]\n    for i in range(len(words) - 1):\n        cur_w = words[i]",
+        "detail": "back_end.utils.decoupage.segmenter",
+        "documentation": {}
+    },
+    {
+        "label": "split_chunk_to_phrases",
+        "kind": 2,
+        "importPath": "back_end.utils.decoupage.segmenter",
+        "description": "back_end.utils.decoupage.segmenter",
+        "peekOfCode": "def split_chunk_to_phrases(\n    chunk: List[Dict[str, Any]],\n    min_words: int,\n    max_words: int,\n    max_chars: int,\n    max_duration: float,\n    debug: bool = False\n) -> List[Dict[str, Any]]:\n    \"\"\"\n    Convert a chunk (no big silences inside) into phrase segments.",
+        "detail": "back_end.utils.decoupage.segmenter",
+        "documentation": {}
+    },
+    {
+        "label": "segment_phrases",
+        "kind": 2,
+        "importPath": "back_end.utils.decoupage.segmenter",
+        "description": "back_end.utils.decoupage.segmenter",
+        "peekOfCode": "def segment_phrases(\n    aligned_segments: List[Dict[str, Any]],\n    *,\n    silence_threshold: float = 0.6,\n    min_words: int = 2,\n    max_words: int = 14,\n    max_chars: int = 80,\n    max_duration: float = 8.0,\n    debug: bool = False\n) -> List[Dict[str, Any]]:",
+        "detail": "back_end.utils.decoupage.segmenter",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.utils.decoupage.segmenter",
+        "description": "back_end.utils.decoupage.segmenter",
+        "peekOfCode": "logger = logging.getLogger(\"segmenter\")\nlogger.setLevel(logging.INFO)\ndef _float(x):\n    try:\n        return float(x)\n    except Exception:\n        return 0.0\ndef _word_text(w):\n    return (w.get(\"word\") or w.get(\"text\") or \"\").strip()\ndef _word_start(w, seg_start=None):",
+        "detail": "back_end.utils.decoupage.segmenter",
+        "documentation": {}
+    },
+    {
+        "label": "extract_fifo_copy_then_convert_safe",
+        "kind": 2,
+        "importPath": "back_end.utils.extract_audio.extract_copy_then_convert",
+        "description": "back_end.utils.extract_audio.extract_copy_then_convert",
+        "peekOfCode": "def extract_fifo_copy_then_convert_safe(input_video, output_wav, sample_rate=44100, channels=2, timeout=900):\n    if os.name == \"nt\":\n        raise RuntimeError(\"FIFO method not supported on Windows via os.mkfifo().\")\n    if shutil.which(\"ffmpeg\") is None:\n        raise RuntimeError(\"ffmpeg introuvable dans le PATH.\")\n    fifo_dir = tempfile.mkdtemp(prefix=\"fffifo_\")\n    fifo_path = os.path.join(fifo_dir, \"audio_fifo\")\n    os.mkfifo(fifo_path)\n    t0 = time.perf_counter()\n    writer_cmd = [",
+        "detail": "back_end.utils.extract_audio.extract_copy_then_convert",
+        "documentation": {}
+    },
+    {
+        "label": "extract_direct",
+        "kind": 2,
+        "importPath": "back_end.utils.extract_audio.extract_direct",
+        "description": "back_end.utils.extract_audio.extract_direct",
+        "peekOfCode": "def extract_direct(input_video, output_wav, sample_rate=44100, channels=2, timeout=900):\n    \"\"\"Décodage + ré-encodage en une passe.\n    ffmpeg -i input -vn -ar {sample_rate} -ac {channels} -acodec pcm_s16le output.wav\n    \"\"\"\n    cmd = [\n        \"ffmpeg\", \"-y\", \"-nostdin\", \"-hide_banner\",\n        \"-i\", input_video,\n        \"-vn\",\n        \"-ar\", str(sample_rate),\n        \"-ac\", str(channels),",
+        "detail": "back_end.utils.extract_audio.extract_direct",
+        "documentation": {}
+    },
+    {
+        "label": "extract_copy_then_convert_tmpfile",
+        "kind": 2,
+        "importPath": "back_end.utils.extract_audio.extract_using_tmp",
+        "description": "back_end.utils.extract_audio.extract_using_tmp",
+        "peekOfCode": "def extract_copy_then_convert_tmpfile(input_video, output_wav, sample_rate=16000, channels=1, timeout=900):\n    \"\"\"Fallback cross-platform : copie la piste compressée dans un fichier temporaire,\n    puis ré-encode ce fichier en WAV. Simple et compatible Windows.\n    \"\"\"\n    if shutil.which(\"ffmpeg\") is None:\n        raise RuntimeError(\"ffmpeg introuvable dans le PATH.\")\n    tmp = tempfile.NamedTemporaryFile(suffix=\".mka\", delete=False)\n    tmp_path = tmp.name\n    tmp.close()\n    t0 = time.perf_counter()",
+        "detail": "back_end.utils.extract_audio.extract_using_tmp",
+        "documentation": {}
+    },
+    {
+        "label": "convert_audio_to_wav",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.convert_audio_to_wav",
+        "description": "back_end.utils.helper.convert_audio_to_wav",
+        "peekOfCode": "def convert_audio_to_wav(input_path: Union[str, Path], output_wav: Union[str, Path], sr: int = 44100, channels: int = 2):\n    \"\"\"\n    Convertit input audio (mp3/m4a/ogg/...) en WAV PCM linéaire.\n    Bloquant; prévu pour être appelé via run_in_threadpool.\n    \"\"\"\n    input_path = str(input_path)\n    output_wav = str(output_wav)\n    cmd = [\n        \"ffmpeg\", \"-y\", \"-hide_banner\", \"-loglevel\", \"error\",\n        \"-i\", input_path,",
+        "detail": "back_end.utils.helper.convert_audio_to_wav",
+        "documentation": {}
+    },
+    {
+        "label": "detect_is_audio_trues",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.detect_is_audio",
+        "description": "back_end.utils.helper.detect_is_audio",
+        "peekOfCode": "def detect_is_audio_trues(file_path: Union[str, Path], logger) -> bool:\n    \"\"\"\n    Retourne True si le fichier n'a PAS de piste vidéo (i.e. audio-only).\n    Utilise ffprobe pour inspecter les streams.\n    \"\"\"\n    file_path = Path(file_path)\n    if not file_path.exists():\n        raise FileNotFoundError(f\"Fichier introuvable: {file_path}\")\n    cmd = [\n        \"ffprobe\", \"-v\", \"error\",",
+        "detail": "back_end.utils.helper.detect_is_audio",
+        "documentation": {}
+    },
+    {
+        "label": "create_job_queue",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.notify_job",
+        "description": "back_end.utils.helper.notify_job",
+        "peekOfCode": "def create_job_queue(job_id: str) -> None:\n    \"\"\"Créer une queue asyncio pour job_id (écrase si existante).\"\"\"\n    q = asyncio.Queue()\n    job_queues[job_id] = q\ndef init_job_state(job_id: str, tasks_order: Optional[List[Tuple[str, str]]] = None) -> None:\n    \"\"\"Initialise la map tasks pour le job avec status 'pending'.\"\"\"\n    order = tasks_order if tasks_order is not None else TASKS_ORDER\n    state = {}\n    for task_id, label in order:\n        state[task_id] = {\"id\": task_id, \"label\": label, \"status\": \"pending\", \"info\": None}",
+        "detail": "back_end.utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "init_job_state",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.notify_job",
+        "description": "back_end.utils.helper.notify_job",
+        "peekOfCode": "def init_job_state(job_id: str, tasks_order: Optional[List[Tuple[str, str]]] = None) -> None:\n    \"\"\"Initialise la map tasks pour le job avec status 'pending'.\"\"\"\n    order = tasks_order if tasks_order is not None else TASKS_ORDER\n    state = {}\n    for task_id, label in order:\n        state[task_id] = {\"id\": task_id, \"label\": label, \"status\": \"pending\", \"info\": None}\n    job_states[job_id] = state\ndef get_job_queue(job_id: str) -> Optional[asyncio.Queue]:\n    return job_queues.get(job_id)\ndef get_job_state(job_id: str) -> Optional[Dict[str, dict]]:",
+        "detail": "back_end.utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "get_job_queue",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.notify_job",
+        "description": "back_end.utils.helper.notify_job",
+        "peekOfCode": "def get_job_queue(job_id: str) -> Optional[asyncio.Queue]:\n    return job_queues.get(job_id)\ndef get_job_state(job_id: str) -> Optional[Dict[str, dict]]:\n    return job_states.get(job_id)\n# --- internal helper pour marquer le status (doit être appelé dans l'event loop) ---\ndef _mark_task_in_loop(job_id: str, task_id: str, status: str, info: Optional[dict] = None) -> None:\n    s = job_states.get(job_id)\n    if not s:\n        return\n    if task_id not in s:",
+        "detail": "back_end.utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "get_job_state",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.notify_job",
+        "description": "back_end.utils.helper.notify_job",
+        "peekOfCode": "def get_job_state(job_id: str) -> Optional[Dict[str, dict]]:\n    return job_states.get(job_id)\n# --- internal helper pour marquer le status (doit être appelé dans l'event loop) ---\ndef _mark_task_in_loop(job_id: str, task_id: str, status: str, info: Optional[dict] = None) -> None:\n    s = job_states.get(job_id)\n    if not s:\n        return\n    if task_id not in s:\n        # si tâche inconnue on l'ajoute (tolérance)\n        s[task_id] = {\"id\": task_id, \"label\": task_id, \"status\": status, \"info\": info}",
+        "detail": "back_end.utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "notify_job",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.notify_job",
+        "description": "back_end.utils.helper.notify_job",
+        "peekOfCode": "def notify_job(job_id: str, event: str, payload: dict) -> None:\n    \"\"\"\n    Pousse un message JSON dans la queue du job ET met à jour job_states pour\n    certains événements standards (task_started, task_finished, task_info, error).\n    Usage examples:\n      notify_job(job_id, \"task_started\", {\"task\": \"extraction\"})\n      notify_job(job_id, \"task_finished\", {\"task\": \"extraction\", \"result\": {\"wav\": \"/uploads/...\"}})\n    \"\"\"\n    q = job_queues.get(job_id)\n    if q is None:",
+        "detail": "back_end.utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup_job",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.notify_job",
+        "description": "back_end.utils.helper.notify_job",
+        "peekOfCode": "def cleanup_job(job_id: str) -> None:\n    job_queues.pop(job_id, None)\n    job_states.pop(job_id, None)",
+        "detail": "back_end.utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "probe_first_audio",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.prob_audio_utils",
+        "description": "back_end.utils.helper.prob_audio_utils",
+        "peekOfCode": "def probe_first_audio(input_file, timeout=10):\n    \"\"\"Retourne dict simple de la première piste audio (codec, sr, channels, duration).\n    Renvoie None si aucune piste audio trouvée.\n    \"\"\"\n    if shutil.which(\"ffprobe\") is None:\n        raise RuntimeError(\"ffprobe introuvable.\")\n    cmd = [\"ffprobe\", \"-v\", \"quiet\", \"-print_format\", \"json\", \"-show_streams\", \"-select_streams\", \"a\", input_file]\n    cp = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=timeout)\n    import json\n    data = json.loads(cp.stdout or \"{}\")",
+        "detail": "back_end.utils.helper.prob_audio_utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_video_resolution",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.prob_video",
+        "description": "back_end.utils.helper.prob_video",
+        "peekOfCode": "def get_video_resolution(path: Path) -> Tuple[int, int]:\n    \"\"\"\n    Retourne (width, height) en int pour la première piste vidéo.\n    Nécessite ffprobe disponible dans PATH.\n    \"\"\"\n    p = str(path)\n    cmd = [\n        \"ffprobe\", \"-v\", \"error\",\n        \"-select_streams\", \"v:0\",\n        \"-show_entries\", \"stream=width,height\",",
+        "detail": "back_end.utils.helper.prob_video",
+        "documentation": {}
+    },
+    {
+        "label": "run_check",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.run_cmd_utils",
+        "description": "back_end.utils.helper.run_cmd_utils",
+        "peekOfCode": "def run_check(cmd, capture_output=False, timeout=None):\n    cp = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=timeout)\n    if cp.returncode != 0:\n        raise subprocess.CalledProcessError(cp.returncode, cmd, output=cp.stdout, stderr=cp.stderr)\n    if not capture_output:\n        if cp.stderr:\n            print(cp.stderr, end=\"\")\n    return cp",
+        "detail": "back_end.utils.helper.run_cmd_utils",
+        "documentation": {}
+    },
+    {
+        "label": "segment_to_dict",
+        "kind": 2,
+        "importPath": "back_end.utils.helper.segment_to_dict",
+        "description": "back_end.utils.helper.segment_to_dict",
+        "peekOfCode": "def segment_to_dict(s):\n    \"\"\"Normalise un segment qui peut être un objet (avec .start/.end/.text)\n       ou un dict {'start':..,'end':..,'text':..}.\"\"\"\n    if s is None:\n        return {\"start\": None, \"end\": None, \"text\": None}\n    # cas dict-like\n    if isinstance(s, dict):\n        return {\n            \"start\": s.get(\"start\"),\n            \"end\": s.get(\"end\"),",
+        "detail": "back_end.utils.helper.segment_to_dict",
+        "documentation": {}
+    },
+    {
+        "label": "choose_font_size_for_video",
+        "kind": 2,
+        "importPath": "back_end.utils.subtitle_config.choose_font_size",
+        "description": "back_end.utils.subtitle_config.choose_font_size",
+        "peekOfCode": "def choose_font_size_for_video(video_h: int, user_font_size: int) -> int:\n    \"\"\"\n    Retourne une fontsize ASS recommandée selon la hauteur de la vidéo (video_h).\n    - user_font_size : la taille souhaitée par l'utilisateur (valeur minimale à respecter).\n    L'idée : fournir tailles 'designer-friendly' pour 480/720/1080/1440/2160.\n    \"\"\"\n    # recommandations empiriques — tu peux les ajuster\n    if video_h <= 480:\n        suggested = 1\n    elif video_h <= 720:",
+        "detail": "back_end.utils.subtitle_config.choose_font_size",
+        "documentation": {}
+    },
+    {
+        "label": "hex_to_ass_color",
+        "kind": 2,
+        "importPath": "back_end.utils.subtitle_config.convert_color",
+        "description": "back_end.utils.subtitle_config.convert_color",
+        "peekOfCode": "def hex_to_ass_color(hex_color: str) -> str:\n    \"\"\"\n    Convertit '#RRGGBB' ou 'RRGGBB' en couleur ASS &H00BBGGRR (alpha 00 = opaque).\n    Exemple: '#FF0000' -> '&H000000FF' (rouge)\n    \"\"\"\n    h = hex_color.lstrip(\"#\")\n    if len(h) != 6:\n        raise ValueError(\"hex_color doit être au format RRGGBB ou #RRGGBB\")\n    rr = h[0:2]\n    gg = h[2:4]",
+        "detail": "back_end.utils.subtitle_config.convert_color",
+        "documentation": {}
+    },
+    {
+        "label": "escape_path_for_subtitles",
+        "kind": 2,
+        "importPath": "back_end.utils.subtitle_config.path_sure",
+        "description": "back_end.utils.subtitle_config.path_sure",
+        "peekOfCode": "def escape_path_for_subtitles(path: Path) -> str:\n    \"\"\"\n    Retourne une représentation sûre du chemin pour le filtre subtitles.\n    - Utilise / comme séparateur\n    - Double les apostrophes pour l'encapsulation entre quotes simples\n    \"\"\"\n    p = Path(path).as_posix()\n    # double apostrophe ' → ''\n    p_escaped = p.replace(\"'\", \"''\")\n    return p_escaped",
+        "detail": "back_end.utils.subtitle_config.path_sure",
+        "documentation": {}
+    },
+    {
+        "label": "segments_to_ass",
+        "kind": 2,
+        "importPath": "back_end.utils.subtitle_config.segment_to_ass",
+        "description": "back_end.utils.subtitle_config.segment_to_ass",
+        "peekOfCode": "def segments_to_ass(\n    segments: List[Dict],\n    output_ass_path: str,\n    playresx: int = 3840,\n    playresy: int = 2160,\n    fontname: str = \"Arial\",\n    fontsize: int = 36,\n    font_color_ass: str = \"&H00FFFFFF\",   # use hex_to_ass_color if you prefer\n    outline_color_ass: str = \"&H00000000\",\n    outline_width: int = 2,",
+        "detail": "back_end.utils.subtitle_config.segment_to_ass",
+        "documentation": {}
+    },
+    {
+        "label": "_RE_CONTROL",
+        "kind": 5,
+        "importPath": "back_end.utils.subtitle_config.segment_to_ass",
+        "description": "back_end.utils.subtitle_config.segment_to_ass",
+        "peekOfCode": "_RE_CONTROL = re.compile(r\"[\\x00-\\x1f\\x7f-\\x9f]\")\ndef _sanitize_text(s: str) -> str:\n    if s is None:\n        return \"\"\n    s = _RE_CONTROL.sub(\" \", s)\n    s = unicodedata.normalize(\"NFC\", s)\n    s = re.sub(r\"\\s+\", \" \", s).strip()\n    return s\ndef _format_time_ass(seconds: float) -> str:\n    # ASS requires H:MM:SS.cc (centiseconds)",
+        "detail": "back_end.utils.subtitle_config.segment_to_ass",
+        "documentation": {}
+    },
+    {
+        "label": "_ALIGNMENT_MAP",
+        "kind": 5,
+        "importPath": "back_end.utils.subtitle_config.subtitle_position",
+        "description": "back_end.utils.subtitle_config.subtitle_position",
+        "peekOfCode": "_ALIGNMENT_MAP = {\n    \"bottom-left\": 1,\n    \"bottom-center\": 2,\n    \"bottom-right\": 3,\n    \"center-left\": 4,\n    \"center\": 5,\n    \"center-right\": 6,\n    \"top-left\": 7,\n    \"top-center\": 8,\n    \"top-right\": 9,",
+        "detail": "back_end.utils.subtitle_config.subtitle_position",
+        "documentation": {}
+    },
+    {
+        "label": "build_phrases",
+        "kind": 2,
+        "importPath": "back_end.utils.align_utils",
+        "description": "back_end.utils.align_utils",
+        "peekOfCode": "def build_phrases(\n    audio_clear_path: Path,\n    language: str,\n    whisper_model: str,\n    device: str,\n    reuse_models: bool = True,\n) -> Tuple[List[Dict[str, Any]], str]:\n    \"\"\"\n    Wrapper pratique : appelle transcribe_and_align puis reconstruit des segments par phrase précis.\n    Retour: (phrase_segments, detected_language)",
+        "detail": "back_end.utils.align_utils",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.utils.align_utils",
+        "description": "back_end.utils.align_utils",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO, format=\"[%(levelname)s] %(message)s\")\ndef build_phrases(\n    audio_clear_path: Path,\n    language: str,\n    whisper_model: str,\n    device: str,\n    reuse_models: bool = True,\n) -> Tuple[List[Dict[str, Any]], str]:\n    \"\"\"",
+        "detail": "back_end.utils.align_utils",
+        "documentation": {}
+    },
+    {
+        "label": "resize_image",
+        "kind": 2,
+        "importPath": "back_end.utils.create_video_from_audio_utils",
+        "description": "back_end.utils.create_video_from_audio_utils",
+        "peekOfCode": "def resize_image(input_path, width, height) -> Path:\n    img = Image.open(input_path)\n    img_resized = img.resize((width, height), Image.LANCZOS)\n    img_resized.save(input_path)  # écrase l'original\n    return input_path\ndef _check_tool(name=\"ffmpeg\"):\n    if shutil.which(name) is None:\n        raise FileNotFoundError(f\"{name} introuvable dans le PATH. Installe/ajoute {name}.\")\ndef _ffprobe_duration(path: Path) -> float:\n    \"\"\"Retourne la durée en secondes du fichier média via ffprobe.\"\"\"",
+        "detail": "back_end.utils.create_video_from_audio_utils",
+        "documentation": {}
+    },
+    {
+        "label": "build_video_from_wav",
+        "kind": 2,
+        "importPath": "back_end.utils.create_video_from_audio_utils",
+        "description": "back_end.utils.create_video_from_audio_utils",
+        "peekOfCode": "def build_video_from_wav(\n    wav_path,\n    *,\n    fond: str = None,          # chemin image ou couleur hex (#RRGGBB)\n    out_path: str = None,      # chemin final\n    width: int = 1280,\n    height: int = 720,\n    nvenc_preset: str = \"p1\",  # rapide, pour audio + image fixe\n) -> Path:\n    \"\"\"",
+        "detail": "back_end.utils.create_video_from_audio_utils",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.utils.create_video_from_audio_utils",
+        "description": "back_end.utils.create_video_from_audio_utils",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogger.setLevel(logging.INFO)\ndef resize_image(input_path, width, height) -> Path:\n    img = Image.open(input_path)\n    img_resized = img.resize((width, height), Image.LANCZOS)\n    img_resized.save(input_path)  # écrase l'original\n    return input_path\ndef _check_tool(name=\"ffmpeg\"):\n    if shutil.which(name) is None:\n        raise FileNotFoundError(f\"{name} introuvable dans le PATH. Installe/ajoute {name}.\")",
+        "detail": "back_end.utils.create_video_from_audio_utils",
+        "documentation": {}
+    },
+    {
+        "label": "extract_audio",
+        "kind": 2,
+        "importPath": "back_end.utils.extract_audio_utils",
+        "description": "back_end.utils.extract_audio_utils",
+        "peekOfCode": "def extract_audio(input_video, output_wav, sample_rate: Union[int,None]=44100, channels: int = 2,\n                  duration_threshold_seconds: int = 600, timeout: int = 900):\n    \"\"\"\n    Wrapper pour extraire l'audio :\n    - sample_rate=None => préserver sample rate d'origine (ne pas forcer la ré-échantillonnage)\n    - Par défaut on sort en 44100 stereo (bon pour Demucs).\n    \"\"\"\n    info = probe_first_audio(input_video)\n    if not info:\n        raise RuntimeError(\"Aucune piste audio détectée.\")",
+        "detail": "back_end.utils.extract_audio_utils",
+        "documentation": {}
+    },
+    {
+        "label": "demucs_cli_run",
+        "kind": 2,
+        "importPath": "back_end.utils.extract_voice_utils",
+        "description": "back_end.utils.extract_voice_utils",
+        "peekOfCode": "def demucs_cli_run(input_wav: Path, out_dir: Path, model: str = \"mdx_q\", cpu: bool = False):\n    \"\"\"\n    Version améliorée avec meilleur contrôle du processus\n    \"\"\"\n    input_wav = Path(input_wav)\n    out_dir = Path(out_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    # Construction commande\n    cmd = [\"demucs\", \"-n\", model,  str(input_wav), \"--two-stems\", \"vocals\", \"-o\", str(out_dir)]\n    if cpu:",
+        "detail": "back_end.utils.extract_voice_utils",
+        "documentation": {}
+    },
+    {
+        "label": "run_demucs",
+        "kind": 2,
+        "importPath": "back_end.utils.extract_voice_utils",
+        "description": "back_end.utils.extract_voice_utils",
+        "peekOfCode": "def run_demucs(\n    wav_path: Path,\n    out_target: Path,\n    *,\n    single_sig: str = None,    # sig unique, ex: 'a1d90b5c' (si fourni on l'utilise comme clé de modèle)\n    model: str = \"mdx\",  # modèle par défaut si single_sig=None\n    device: str = \"cuda\",   # ignoré par CLI sauf si cpu=True\n    jobs: int = 1,\n    use_cli: bool = True,   # si True utilisera la CLI, sinon (fallback) garderait l'API (non utilisée ici)\n):",
+        "detail": "back_end.utils.extract_voice_utils",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.utils.extract_voice_utils",
+        "description": "back_end.utils.extract_voice_utils",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogger.setLevel(logging.INFO)\ndef demucs_cli_run(input_wav: Path, out_dir: Path, model: str = \"mdx_q\", cpu: bool = False):\n    \"\"\"\n    Version améliorée avec meilleur contrôle du processus\n    \"\"\"\n    input_wav = Path(input_wav)\n    out_dir = Path(out_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    # Construction commande",
+        "detail": "back_end.utils.extract_voice_utils",
+        "documentation": {}
+    },
+    {
+        "label": "burn_subtitles_into_video",
+        "kind": 2,
+        "importPath": "back_end.utils.subtitle_video_utils",
+        "description": "back_end.utils.subtitle_video_utils",
+        "peekOfCode": "def burn_subtitles_into_video(\n    input_video: Union[str, Path],\n    input_srt: Union[str, Path],\n    output_video: Optional[Union[str, Path]] = None,\n    *,\n    ffmpeg_path: str = \"ffmpeg\",\n    overwrite: bool = True,\n    timeout: Optional[int] = None,\n    use_gpu: bool = True,\n    hwaccel_name: str = \"cuda\",  # 'cuda' for NVIDIA; could be 'vaapi' for Intel (different flags)",
+        "detail": "back_end.utils.subtitle_video_utils",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.utils.subtitle_video_utils",
+        "description": "back_end.utils.subtitle_video_utils",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO, format=\"[%(levelname)s] %(message)s\")\ndef _ffmpeg_has_encoder(ffmpeg_path: str, encoder_name: str) -> bool:\n    try:\n        out = subprocess.run([ffmpeg_path, \"-hide_banner\", \"-encoders\"],\n                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)\n        return encoder_name in out.stdout\n    except Exception:\n        return False\ndef _ffmpeg_has_hwaccel(ffmpeg_path: str, hwaccel_name: str) -> bool:",
+        "detail": "back_end.utils.subtitle_video_utils",
+        "documentation": {}
+    },
+    {
+        "label": "transcribe_with_faster_whisper_auto",
+        "kind": 2,
+        "importPath": "back_end.utils.transcribe_with_whisper_utils",
+        "description": "back_end.utils.transcribe_with_whisper_utils",
+        "peekOfCode": "def transcribe_with_faster_whisper_auto(\n    logger: logging.Logger,\n    audio_path: Path,\n    model_name: str,     # mettre \"medium\" pour meilleure qualité que small\n    device: str,\n    language: str,\n    temperature: float = 0.0,\n    beam_size: int = 5,\n    reuse: bool = True,\n    whisper_models: Dict[Tuple[str, str, str], Any] = {}",
+        "detail": "back_end.utils.transcribe_with_whisper_utils",
+        "documentation": {}
+    },
+    {
+        "label": "transcribe_and_align",
+        "kind": 2,
+        "importPath": "back_end.utils.upgrade_with_whisperx_utils",
+        "description": "back_end.utils.upgrade_with_whisperx_utils",
+        "peekOfCode": "def transcribe_and_align(\n    audio_clear_path: Path,\n    language: str,                     # <-- par défaut EN si tu utilises whisper CLI en anglais\n    whisper_model: str,\n    device: str = \"cuda\",\n    reuse_models: bool = True,\n) -> Tuple[Any, str]:\n    device = _resolve_device(device)\n    # charger l'audio (toujours nécessaire pour l'alignement)\n    try:",
+        "detail": "back_end.utils.upgrade_with_whisperx_utils",
+        "documentation": {}
+    },
+    {
+        "label": "torch.backends.cuda.matmul.allow_tf32",
+        "kind": 5,
+        "importPath": "back_end.utils.upgrade_with_whisperx_utils",
+        "description": "back_end.utils.upgrade_with_whisperx_utils",
+        "peekOfCode": "torch.backends.cuda.matmul.allow_tf32 = True\ntorch.backends.cudnn.allow_tf32 = True\n# caches pour éviter de recharger les modèles à chaque appel\n_WHISPER_MODELS: Dict[Tuple[str, str, Optional[str]], Any] = {}\n_ALIGN_MODELS: Dict[Tuple[str, str, Optional[str]], Any] = {}\nlogger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\ndef _resolve_device(device: str) -> str:\n    if device.startswith(\"cuda\") and not torch.cuda.is_available():\n        logger.warning(\"CUDA demandé mais pas disponible : basculement vers cpu.\")",
+        "detail": "back_end.utils.upgrade_with_whisperx_utils",
+        "documentation": {}
+    },
+    {
+        "label": "torch.backends.cudnn.allow_tf32",
+        "kind": 5,
+        "importPath": "back_end.utils.upgrade_with_whisperx_utils",
+        "description": "back_end.utils.upgrade_with_whisperx_utils",
+        "peekOfCode": "torch.backends.cudnn.allow_tf32 = True\n# caches pour éviter de recharger les modèles à chaque appel\n_WHISPER_MODELS: Dict[Tuple[str, str, Optional[str]], Any] = {}\n_ALIGN_MODELS: Dict[Tuple[str, str, Optional[str]], Any] = {}\nlogger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\ndef _resolve_device(device: str) -> str:\n    if device.startswith(\"cuda\") and not torch.cuda.is_available():\n        logger.warning(\"CUDA demandé mais pas disponible : basculement vers cpu.\")\n        return \"cpu\"",
+        "detail": "back_end.utils.upgrade_with_whisperx_utils",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.utils.upgrade_with_whisperx_utils",
+        "description": "back_end.utils.upgrade_with_whisperx_utils",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\ndef _resolve_device(device: str) -> str:\n    if device.startswith(\"cuda\") and not torch.cuda.is_available():\n        logger.warning(\"CUDA demandé mais pas disponible : basculement vers cpu.\")\n        return \"cpu\"\n    return device\ndef _load_align_model(language_code: str, device: str, reuse: bool = True):\n    key = (language_code, device)\n    if reuse and key in _ALIGN_MODELS:",
+        "detail": "back_end.utils.upgrade_with_whisperx_utils",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.app",
+        "description": "back_end.app",
+        "peekOfCode": "logger = logging.getLogger(\"app\")\napp = FastAPI(title=\"Pipeline Audio → Sous-titres\")\napp.add_middleware(\n  CORSMiddleware,\n  allow_origins=[\"*\"],  # en dev OK, en prod restreindre aux origines nécessaires\n  allow_credentials=True,\n  allow_methods=[\"*\"],\n  allow_headers=[\"*\"],\n)\n# dossier uploads accessible via /uploads",
+        "detail": "back_end.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "back_end.app",
+        "description": "back_end.app",
+        "peekOfCode": "app = FastAPI(title=\"Pipeline Audio → Sous-titres\")\napp.add_middleware(\n  CORSMiddleware,\n  allow_origins=[\"*\"],  # en dev OK, en prod restreindre aux origines nécessaires\n  allow_credentials=True,\n  allow_methods=[\"*\"],\n  allow_headers=[\"*\"],\n)\n# dossier uploads accessible via /uploads\nUPLOAD_DIR = Path(\"uploads\")",
+        "detail": "back_end.app",
+        "documentation": {}
+    },
+    {
+        "label": "UPLOAD_DIR",
+        "kind": 5,
+        "importPath": "back_end.app",
+        "description": "back_end.app",
+        "peekOfCode": "UPLOAD_DIR = Path(\"uploads\")\nUPLOAD_DIR.mkdir(parents=True, exist_ok=True)\napp.mount(\"/uploads\", StaticFiles(directory=str(UPLOAD_DIR)), name=\"uploads\")\ndef _unique_output_dir(base_dir: Path, prefix: str = \"job\") -> Path:\n    ts = datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n    out = base_dir / f\"{prefix}_{ts}\"\n    out.mkdir(parents=True, exist_ok=True)\n    return out\nasync def _run_full_pipeline(\n    upload_path: Path,   # anciennement video_path ; peut être audio ou video selon is_audio",
+        "detail": "back_end.app",
+        "documentation": {}
+    },
+    {
+        "label": "handle_new_rx_page",
+        "kind": 2,
+        "importPath": "front_end.ios.Flutter.ephemeral.flutter_lldb_helper",
+        "description": "front_end.ios.Flutter.ephemeral.flutter_lldb_helper",
+        "peekOfCode": "def handle_new_rx_page(frame: lldb.SBFrame, bp_loc, extra_args, intern_dict):\n    \"\"\"Intercept NOTIFY_DEBUGGER_ABOUT_RX_PAGES and touch the pages.\"\"\"\n    base = frame.register[\"x0\"].GetValueAsAddress()\n    page_len = frame.register[\"x1\"].GetValueAsUnsigned()\n    # Note: NOTIFY_DEBUGGER_ABOUT_RX_PAGES will check contents of the\n    # first page to see if handled it correctly. This makes diagnosing\n    # misconfiguration (e.g. missing breakpoint) easier.\n    data = bytearray(page_len)\n    data[0:8] = b'IHELPED!'\n    error = lldb.SBError()",
+        "detail": "front_end.ios.Flutter.ephemeral.flutter_lldb_helper",
+        "documentation": {}
+    }
+]
