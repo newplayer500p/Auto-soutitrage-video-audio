@@ -90,7 +90,6 @@ def run_demucs(
     single_sig: str = None,    # sig unique, ex: 'a1d90b5c' (si fourni on l'utilise comme clé de modèle)
     model: str = "mdx",  # modèle par défaut si single_sig=None
     device: str = "cuda",   # ignoré par CLI sauf si cpu=True
-    jobs: int = 1,
     use_cli: bool = True,   # si True utilisera la CLI, sinon (fallback) garderait l'API (non utilisée ici)
 ):
     """

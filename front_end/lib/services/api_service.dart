@@ -19,7 +19,6 @@ class ApiService {
     required String outlineColor, // <-- ajouté
     String? fond, // ex "#000000" => envoyé en champ 'fond'
     PlatformFile? fondFile, // envoyé en champ 'fond_file'
-    required bool showWavForm, // envoyé en champ 'show_wav_form'
   }) async {
     final url = '$baseUrl/video/process';
     final form = FormData();
@@ -30,7 +29,6 @@ class ApiService {
     form.fields.add(MapEntry('font_size', fontSize.toString()));
     form.fields.add(MapEntry('font_color', fontColor));
     form.fields.add(MapEntry('font_outline_color', outlineColor));
-    form.fields.add(MapEntry('show_wav_form', showWavForm ? 'true' : 'false'));
 
     if (fond != null && fond.isNotEmpty) {
       form.fields.add(MapEntry('fond', fond));
@@ -83,6 +81,64 @@ class ApiService {
     } else {
       throw Exception(
         'Upload failed: ${response.statusCode} ${response.statusMessage}',
+      );
+    }
+  }
+
+  /// Récupère tous les jobs enregistrés
+  Future<List<Map<String, dynamic>>> getJobs() async {
+    final url = '$baseUrl/jobs';
+    final response = await _dio.get(url);
+
+    if (response.statusCode != null &&
+        response.statusCode! >= 200 &&
+        response.statusCode! < 300) {
+      if (response.data is Map<String, dynamic>) {
+        // On s'attend à {"count": N, "jobs": [...]}
+        final jobs = response.data['jobs'];
+        if (jobs is List) {
+          return List<Map<String, dynamic>>.from(jobs);
+        } else {
+          throw Exception('Jobs data invalid format');
+        }
+      } else if (response.data is String) {
+        final decoded =
+            json.decode(response.data as String) as Map<String, dynamic>;
+        final jobs = decoded['jobs'];
+        if (jobs is List) return List<Map<String, dynamic>>.from(jobs);
+        throw Exception('Jobs data invalid format');
+      } else {
+        throw Exception(
+          'Unexpected response type: ${response.data.runtimeType}',
+        );
+      }
+    } else {
+      throw Exception(
+        'Failed to fetch jobs: ${response.statusCode} ${response.statusMessage}',
+      );
+    }
+  }
+
+  /// Optionnel : récupérer un job spécifique par jobId
+  Future<Map<String, dynamic>> getJobById(String jobId) async {
+    final url = '$baseUrl/jobs/$jobId';
+    final response = await _dio.get(url);
+
+    if (response.statusCode != null &&
+        response.statusCode! >= 200 &&
+        response.statusCode! < 300) {
+      if (response.data is Map<String, dynamic>) {
+        return Map<String, dynamic>.from(response.data);
+      } else if (response.data is String) {
+        return json.decode(response.data as String) as Map<String, dynamic>;
+      } else {
+        throw Exception(
+          'Unexpected response type: ${response.data.runtimeType}',
+        );
+      }
+    } else {
+      throw Exception(
+        'Failed to fetch job: ${response.statusCode} ${response.statusMessage}',
       );
     }
   }

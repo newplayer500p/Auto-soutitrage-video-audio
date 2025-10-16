@@ -5,7 +5,7 @@ from typing import Optional, Tuple, Dict, Any, List
 import torch
 import whisperx
 
-from .transcribe_with_whisper_utils import transcribe_with_faster_whisper_auto
+from .transcribe_with_whisper_utils import transcribe_with_whisper_auto
 
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
@@ -61,7 +61,7 @@ def transcribe_and_align(
     # -------------- 1) Transcription (choix du back-end) -----------------------
     try:
         logger.info("Transcription via whisper lib (transcribe_with_whisper)...")
-        result = transcribe_with_faster_whisper_auto(
+        result = transcribe_with_whisper_auto(
             logger,
             audio_path=audio_clear_path,
             model_name=whisper_model,

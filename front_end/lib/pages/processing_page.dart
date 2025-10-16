@@ -4,7 +4,7 @@ import 'package:front_end/pages/helper/make_absolute_url.dart';
 import 'package:front_end/services/download_serive.dart';
 import 'package:front_end/services/sse_service.dart';
 import 'package:front_end/services/task_model.dart';
-import 'task_tile.dart';
+import '../widgets/task_tile.dart';
 
 class ProcessingPage extends StatefulWidget {
   final String baseUrl;

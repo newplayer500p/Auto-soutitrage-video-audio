@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/config/constante.dart';
+import 'package:front_end/pages/job_historique_traitement.dart';
+import 'package:front_end/pages/processing_overview_page.dart';
 import 'pages/accueil_page.dart';
 import 'pages/upload_page.dart';
 
@@ -42,9 +45,12 @@ class _MonAppState extends State<MyApp> {
 
       themeMode: _themeMode,
 
+      // main.dart (extrait)
       routes: {
         '/': (context) => AccueilPage(onToggleTheme: _toggleTheme),
         '/upload': (context) => UploadPage(),
+        '/processing': (context) => ProcessingOverviewPage(baseUrl: BASE_URL),
+        '/history': (context) => HistoriqueTraitementPage(baseUrl: BASE_URL),
       },
     );
   }

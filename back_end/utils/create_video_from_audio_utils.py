@@ -42,7 +42,6 @@ def build_video_from_wav(
     wav_path,
     *,
     fond: str = None,          # chemin image ou couleur hex (#RRGGBB)
-    out_path: str = None,      # chemin final
     width: int = 1280,
     height: int = 720,
     nvenc_preset: str = "p1",  # rapide, pour audio + image fixe
@@ -57,7 +56,7 @@ def build_video_from_wav(
     if not wav_path.exists():
         raise FileNotFoundError(f"Fichier audio introuvable: {wav_path}")
 
-    out = Path(out_path) if out_path else Path.cwd() / f"out_{wav_path.stem}.mp4"
+    out =  "video_from_audio.mp4"
     out = out.resolve()
 
     duration = _ffprobe_duration(wav_path)

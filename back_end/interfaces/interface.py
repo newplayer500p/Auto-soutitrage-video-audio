@@ -145,7 +145,6 @@ def burn_subtitles_into_video_interface(
     output_video: Optional[Union[str, Path]] = None,
     is_audio: bool = False,
     fond: Optional[str] = None,
-    show_wav_signal: bool = False,
 ) -> Path:
     """
     Wrapper safe pour deux cas :
@@ -158,7 +157,6 @@ def burn_subtitles_into_video_interface(
       - output_video : chemin de sortie optionnel (str | Path). Si None, un fichier temporaire est créé.
       - is_audio : bool, si True considère `input` comme audio.
       - fond : optionnel, chemin vers image de fond OU couleur hex (transmis à build_video_from_wav si is_audio True)
-      - show_wav_signal : bool, transmis à build_video_from_wav si is_audio True
     Retourne :
       - Path vers le fichier vidéo généré.
     """
@@ -179,7 +177,6 @@ def burn_subtitles_into_video_interface(
     if is_audio:
         # input est un fichier audio -> on génère une vidéo depuis l'audio
         logger.info("Input considéré comme audio. Génération vidéo depuis l'audio.")
-        # build_video_from_wav attend (wav_path, ass_path, fond=..., show_wav_signal=..., out_path=...)
         # ATTENTION: build_video_from_wav doit être importée dans le scope où tu colles cette interface.
         try:
             input = build_video_from_wav(

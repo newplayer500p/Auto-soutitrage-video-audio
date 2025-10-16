@@ -1,5 +1,109 @@
 [
     {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "DateTime",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Text",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "joinedload",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "Path",
         "importPath": "pathlib",
         "description": "pathlib",
@@ -352,14 +456,6 @@
         "documentation": {}
     },
     {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "Tuple",
         "importPath": "typing",
         "description": "typing",
@@ -401,6 +497,14 @@
     },
     {
         "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -478,6 +582,79 @@
         "description": "utils.subtitle_config.convert_color",
         "isExtraImport": true,
         "detail": "utils.subtitle_config.convert_color",
+        "documentation": {}
+    },
+    {
+        "label": "func",
+        "importPath": "sqlalchemy.sql",
+        "description": "sqlalchemy.sql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.sql",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "db.db",
+        "description": "db.db",
+        "isExtraImport": true,
+        "detail": "db.db",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "importPath": "db.db",
+        "description": "db.db",
+        "isExtraImport": true,
+        "detail": "db.db",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "importPath": "db.db",
+        "description": "db.db",
+        "isExtraImport": true,
+        "detail": "db.db",
+        "documentation": {}
+    },
+    {
+        "label": "Job",
+        "importPath": "model.models_db",
+        "description": "model.models_db",
+        "isExtraImport": true,
+        "detail": "model.models_db",
+        "documentation": {}
+    },
+    {
+        "label": "JobFile",
+        "importPath": "model.models_db",
+        "description": "model.models_db",
+        "isExtraImport": true,
+        "detail": "model.models_db",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -597,22 +774,6 @@
         "documentation": {}
     },
     {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
         "label": "unicodedata",
         "kind": 6,
         "isExtraImport": true,
@@ -697,14 +858,6 @@
         "documentation": {}
     },
     {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
         "label": "UploadFile",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -722,6 +875,22 @@
     },
     {
         "label": "Form",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -753,19 +922,19 @@
         "documentation": {}
     },
     {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
         "label": "StaticFiles",
         "importPath": "fastapi.staticfiles",
         "description": "fastapi.staticfiles",
         "isExtraImport": true,
         "detail": "fastapi.staticfiles",
-        "documentation": {}
-    },
-    {
-        "label": "run_in_threadpool",
-        "importPath": "starlette.concurrency",
-        "description": "starlette.concurrency",
-        "isExtraImport": true,
-        "detail": "starlette.concurrency",
         "documentation": {}
     },
     {
@@ -777,12 +946,179 @@
         "documentation": {}
     },
     {
-        "label": "traceback",
-        "kind": 6,
+        "label": "create_job_queue",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
         "isExtraImport": true,
-        "importPath": "traceback",
-        "description": "traceback",
-        "detail": "traceback",
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "init_job_state",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "notify_job",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "get_job_state",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "notify_job",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "get_job_queue",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup_job",
+        "importPath": "utils.helper.notify_job",
+        "description": "utils.helper.notify_job",
+        "isExtraImport": true,
+        "detail": "utils.helper.notify_job",
+        "documentation": {}
+    },
+    {
+        "label": "detect_is_audio_trues",
+        "importPath": "utils.helper.detect_is_audio",
+        "description": "utils.helper.detect_is_audio",
+        "isExtraImport": true,
+        "detail": "utils.helper.detect_is_audio",
+        "documentation": {}
+    },
+    {
+        "label": "get_all_jobs",
+        "importPath": "service.crud",
+        "description": "service.crud",
+        "isExtraImport": true,
+        "detail": "service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "get_job_serialized",
+        "importPath": "service.crud",
+        "description": "service.crud",
+        "isExtraImport": true,
+        "detail": "service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "create_job",
+        "importPath": "service.crud",
+        "description": "service.crud",
+        "isExtraImport": true,
+        "detail": "service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "add_job_file",
+        "importPath": "service.crud",
+        "description": "service.crud",
+        "isExtraImport": true,
+        "detail": "service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "add_job_file",
+        "importPath": "service.crud",
+        "description": "service.crud",
+        "isExtraImport": true,
+        "detail": "service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "set_job_status",
+        "importPath": "service.crud",
+        "description": "service.crud",
+        "isExtraImport": true,
+        "detail": "service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "run_full_pipeline",
+        "importPath": "pipeline",
+        "description": "pipeline",
+        "isExtraImport": true,
+        "detail": "pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "unique_output_dir",
+        "importPath": "pipeline",
+        "description": "pipeline",
+        "isExtraImport": true,
+        "detail": "pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "importPath": "sse",
+        "description": "sse",
+        "isExtraImport": true,
+        "detail": "sse",
+        "documentation": {}
+    },
+    {
+        "label": "segment_to_dict",
+        "importPath": "utils.helper.segment_to_dict",
+        "description": "utils.helper.segment_to_dict",
+        "isExtraImport": true,
+        "detail": "utils.helper.segment_to_dict",
+        "documentation": {}
+    },
+    {
+        "label": "convert_audio_to_wav",
+        "importPath": "utils.helper.convert_audio_to_wav",
+        "description": "utils.helper.convert_audio_to_wav",
+        "isExtraImport": true,
+        "detail": "utils.helper.convert_audio_to_wav",
+        "documentation": {}
+    },
+    {
+        "label": "get_video_resolution",
+        "importPath": "utils.helper.prob_video",
+        "description": "utils.helper.prob_video",
+        "isExtraImport": true,
+        "detail": "utils.helper.prob_video",
+        "documentation": {}
+    },
+    {
+        "label": "choose_font_size_for_video",
+        "importPath": "utils.subtitle_config.choose_font_size",
+        "description": "utils.subtitle_config.choose_font_size",
+        "isExtraImport": true,
+        "detail": "utils.subtitle_config.choose_font_size",
+        "documentation": {}
+    },
+    {
+        "label": "run_in_threadpool",
+        "importPath": "starlette.concurrency",
+        "description": "starlette.concurrency",
+        "isExtraImport": true,
+        "detail": "starlette.concurrency",
         "documentation": {}
     },
     {
@@ -826,91 +1162,12 @@
         "documentation": {}
     },
     {
-        "label": "choose_font_size_for_video",
-        "importPath": "utils.subtitle_config.choose_font_size",
-        "description": "utils.subtitle_config.choose_font_size",
+        "label": "traceback",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "utils.subtitle_config.choose_font_size",
-        "documentation": {}
-    },
-    {
-        "label": "create_job_queue",
-        "importPath": "utils.helper.notify_job",
-        "description": "utils.helper.notify_job",
-        "isExtraImport": true,
-        "detail": "utils.helper.notify_job",
-        "documentation": {}
-    },
-    {
-        "label": "init_job_state",
-        "importPath": "utils.helper.notify_job",
-        "description": "utils.helper.notify_job",
-        "isExtraImport": true,
-        "detail": "utils.helper.notify_job",
-        "documentation": {}
-    },
-    {
-        "label": "notify_job",
-        "importPath": "utils.helper.notify_job",
-        "description": "utils.helper.notify_job",
-        "isExtraImport": true,
-        "detail": "utils.helper.notify_job",
-        "documentation": {}
-    },
-    {
-        "label": "get_job_state",
-        "importPath": "utils.helper.notify_job",
-        "description": "utils.helper.notify_job",
-        "isExtraImport": true,
-        "detail": "utils.helper.notify_job",
-        "documentation": {}
-    },
-    {
-        "label": "get_job_queue",
-        "importPath": "utils.helper.notify_job",
-        "description": "utils.helper.notify_job",
-        "isExtraImport": true,
-        "detail": "utils.helper.notify_job",
-        "documentation": {}
-    },
-    {
-        "label": "cleanup_job",
-        "importPath": "utils.helper.notify_job",
-        "description": "utils.helper.notify_job",
-        "isExtraImport": true,
-        "detail": "utils.helper.notify_job",
-        "documentation": {}
-    },
-    {
-        "label": "segment_to_dict",
-        "importPath": "utils.helper.segment_to_dict",
-        "description": "utils.helper.segment_to_dict",
-        "isExtraImport": true,
-        "detail": "utils.helper.segment_to_dict",
-        "documentation": {}
-    },
-    {
-        "label": "convert_audio_to_wav",
-        "importPath": "utils.helper.convert_audio_to_wav",
-        "description": "utils.helper.convert_audio_to_wav",
-        "isExtraImport": true,
-        "detail": "utils.helper.convert_audio_to_wav",
-        "documentation": {}
-    },
-    {
-        "label": "get_video_resolution",
-        "importPath": "utils.helper.prob_video",
-        "description": "utils.helper.prob_video",
-        "isExtraImport": true,
-        "detail": "utils.helper.prob_video",
-        "documentation": {}
-    },
-    {
-        "label": "detect_is_audio_trues",
-        "importPath": "utils.helper.detect_is_audio",
-        "description": "utils.helper.detect_is_audio",
-        "isExtraImport": true,
-        "detail": "utils.helper.detect_is_audio",
+        "importPath": "traceback",
+        "description": "traceback",
+        "detail": "traceback",
         "documentation": {}
     },
     {
@@ -920,6 +1177,51 @@
         "importPath": "lldb",
         "description": "lldb",
         "detail": "lldb",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "back_end.db.db",
+        "description": "back_end.db.db",
+        "peekOfCode": "def init_db():\n    # appeler au démarrage de l'app\n    Base.metadata.create_all(bind=engine)",
+        "detail": "back_end.db.db",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_URL",
+        "kind": 5,
+        "importPath": "back_end.db.db",
+        "description": "back_end.db.db",
+        "peekOfCode": "DATABASE_URL = \"sqlite:///jobs.db\"\nengine = create_engine(\n    DATABASE_URL, connect_args={\"check_same_thread\": False}\n)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\ndef init_db():\n    # appeler au démarrage de l'app\n    Base.metadata.create_all(bind=engine)",
+        "detail": "back_end.db.db",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "back_end.db.db",
+        "description": "back_end.db.db",
+        "peekOfCode": "engine = create_engine(\n    DATABASE_URL, connect_args={\"check_same_thread\": False}\n)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\ndef init_db():\n    # appeler au démarrage de l'app\n    Base.metadata.create_all(bind=engine)",
+        "detail": "back_end.db.db",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "kind": 5,
+        "importPath": "back_end.db.db",
+        "description": "back_end.db.db",
+        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\ndef init_db():\n    # appeler au démarrage de l'app\n    Base.metadata.create_all(bind=engine)",
+        "detail": "back_end.db.db",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "back_end.db.db",
+        "description": "back_end.db.db",
+        "peekOfCode": "Base = declarative_base()\ndef init_db():\n    # appeler au démarrage de l'app\n    Base.metadata.create_all(bind=engine)",
+        "detail": "back_end.db.db",
         "documentation": {}
     },
     {
@@ -963,7 +1265,7 @@
         "kind": 2,
         "importPath": "back_end.interfaces.interface",
         "description": "back_end.interfaces.interface",
-        "peekOfCode": "def burn_subtitles_into_video_interface(\n    input: Union[str, Path],\n    input_srt: Union[str, Path],\n    output_video: Optional[Union[str, Path]] = None,\n    is_audio: bool = False,\n    fond: Optional[str] = None,\n    show_wav_signal: bool = False,\n) -> Path:\n    \"\"\"\n    Wrapper safe pour deux cas :",
+        "peekOfCode": "def burn_subtitles_into_video_interface(\n    input: Union[str, Path],\n    input_srt: Union[str, Path],\n    output_video: Optional[Union[str, Path]] = None,\n    is_audio: bool = False,\n    fond: Optional[str] = None,\n) -> Path:\n    \"\"\"\n    Wrapper safe pour deux cas :\n      - si is_audio == True : l'input est un fichier audio -> on appelle build_video_from_wav",
         "detail": "back_end.interfaces.interface",
         "documentation": {}
     },
@@ -974,6 +1276,78 @@
         "description": "back_end.interfaces.interface",
         "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO, format=\"[%(levelname)s] %(message)s\")\ndef _ensure_parent(path: Union[str, Path]) -> Path:\n    p = Path(path)\n    if not p.parent.exists():\n        p.parent.mkdir(parents=True, exist_ok=True)\n    return p\n# 1) Interface pour extract_audio\ndef extract_audio_interface(\n    input_video: Union[str, Path],",
         "detail": "back_end.interfaces.interface",
+        "documentation": {}
+    },
+    {
+        "label": "Job",
+        "kind": 6,
+        "importPath": "back_end.model.models_db",
+        "description": "back_end.model.models_db",
+        "peekOfCode": "class Job(Base):\n    __tablename__ = \"jobs\"\n    id = Column(String, primary_key=True, index=True)   # uuid string\n    status = Column(String, default=\"pending\", index=True)\n    start_time = Column(DateTime(timezone=True), server_default=func.now())\n    end_time = Column(DateTime(timezone=True), nullable=True)\n    message = Column(Text, nullable=True)\n    files = relationship(\"JobFile\", back_populates=\"job\", cascade=\"all, delete-orphan\")\nclass JobFile(Base):\n    __tablename__ = \"job_files\"",
+        "detail": "back_end.model.models_db",
+        "documentation": {}
+    },
+    {
+        "label": "JobFile",
+        "kind": 6,
+        "importPath": "back_end.model.models_db",
+        "description": "back_end.model.models_db",
+        "peekOfCode": "class JobFile(Base):\n    __tablename__ = \"job_files\"\n    id = Column(Integer, primary_key=True, autoincrement=True)\n    job_id = Column(String, ForeignKey(\"jobs.id\"), index=True)\n    file_type = Column(String, index=True)  # ex: \"uploaded\", \"wav\", \"vocals\", \"ass\", \"final\"\n    path = Column(Text)\n    created_at = Column(DateTime(timezone=True), server_default=func.now())\n    job = relationship(\"Job\", back_populates=\"files\")",
+        "detail": "back_end.model.models_db",
+        "documentation": {}
+    },
+    {
+        "label": "create_job",
+        "kind": 2,
+        "importPath": "back_end.service.crud",
+        "description": "back_end.service.crud",
+        "peekOfCode": "def create_job(job_id: str, db: Session = None):\n    close = False\n    if db is None:\n        db = SessionLocal()\n        close = True\n    job = Job(id=job_id, status=\"started\", start_time=datetime.utcnow())\n    db.add(job)\n    db.commit()\n    db.refresh(job)\n    if close:",
+        "detail": "back_end.service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "set_job_status",
+        "kind": 2,
+        "importPath": "back_end.service.crud",
+        "description": "back_end.service.crud",
+        "peekOfCode": "def set_job_status(job_id: str, status: str, message: str = None):\n    db = SessionLocal()\n    job = db.query(Job).get(job_id)\n    if not job:\n        db.close()\n        return None\n    job.status = status\n    if message is not None:\n        job.message = message\n    if status in (\"finished\", \"error\", \"canceled\"):",
+        "detail": "back_end.service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "add_job_file",
+        "kind": 2,
+        "importPath": "back_end.service.crud",
+        "description": "back_end.service.crud",
+        "peekOfCode": "def add_job_file(job_id: str, file_type: str, path: str):\n    db = SessionLocal()\n    job = db.query(Job).get(job_id)\n    if not job:\n        db.close()\n        return None\n    jf = JobFile(job_id=job_id, file_type=file_type, path=path)\n    db.add(jf)\n    db.commit()\n    db.refresh(jf)",
+        "detail": "back_end.service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "get_job",
+        "kind": 2,
+        "importPath": "back_end.service.crud",
+        "description": "back_end.service.crud",
+        "peekOfCode": "def get_job(job_id: str):\n    db = SessionLocal()\n    job = db.query(Job).get(job_id)\n    db.close()\n    return job\ndef _serialize_job(job: Job) -> dict:\n    return {\n        \"id\": job.id,\n        \"status\": job.status,\n        \"start_time\": job.start_time.isoformat() if job.start_time else None,",
+        "detail": "back_end.service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "get_all_jobs",
+        "kind": 2,
+        "importPath": "back_end.service.crud",
+        "description": "back_end.service.crud",
+        "peekOfCode": "def get_all_jobs():\n    \"\"\"\n    Retourne la liste de tous les jobs (sérialisée) ordonnés par start_time descendant.\n    \"\"\"\n    db = SessionLocal()\n    try:\n        jobs = db.query(Job).options(joinedload(Job.files)).order_by(Job.start_time.desc()).all()\n        return [_serialize_job(j) for j in jobs]\n    finally:\n        db.close()",
+        "detail": "back_end.service.crud",
+        "documentation": {}
+    },
+    {
+        "label": "get_job_serialized",
+        "kind": 2,
+        "importPath": "back_end.service.crud",
+        "description": "back_end.service.crud",
+        "peekOfCode": "def get_job_serialized(job_id: str):\n    \"\"\"\n    Retourne un job sérialisé (ou None).\n    \"\"\"\n    db = SessionLocal()\n    try:\n        job = db.query(Job).options(joinedload(Job.files)).get(job_id)\n        if not job:\n            return None\n        return _serialize_job(job)",
+        "detail": "back_end.service.crud",
         "documentation": {}
     },
     {
@@ -1260,7 +1634,7 @@
         "kind": 2,
         "importPath": "back_end.utils.create_video_from_audio_utils",
         "description": "back_end.utils.create_video_from_audio_utils",
-        "peekOfCode": "def build_video_from_wav(\n    wav_path,\n    *,\n    fond: str = None,          # chemin image ou couleur hex (#RRGGBB)\n    out_path: str = None,      # chemin final\n    width: int = 1280,\n    height: int = 720,\n    nvenc_preset: str = \"p1\",  # rapide, pour audio + image fixe\n) -> Path:\n    \"\"\"",
+        "peekOfCode": "def build_video_from_wav(\n    wav_path,\n    *,\n    fond: str = None,          # chemin image ou couleur hex (#RRGGBB)\n    width: int = 1280,\n    height: int = 720,\n    nvenc_preset: str = \"p1\",  # rapide, pour audio + image fixe\n) -> Path:\n    \"\"\"\n    Génère une vidéo à partir d'un audio + fond fixe (image ou couleur) + sous-titres optionnels.",
         "detail": "back_end.utils.create_video_from_audio_utils",
         "documentation": {}
     },
@@ -1296,7 +1670,7 @@
         "kind": 2,
         "importPath": "back_end.utils.extract_voice_utils",
         "description": "back_end.utils.extract_voice_utils",
-        "peekOfCode": "def run_demucs(\n    wav_path: Path,\n    out_target: Path,\n    *,\n    single_sig: str = None,    # sig unique, ex: 'a1d90b5c' (si fourni on l'utilise comme clé de modèle)\n    model: str = \"mdx\",  # modèle par défaut si single_sig=None\n    device: str = \"cuda\",   # ignoré par CLI sauf si cpu=True\n    jobs: int = 1,\n    use_cli: bool = True,   # si True utilisera la CLI, sinon (fallback) garderait l'API (non utilisée ici)\n):",
+        "peekOfCode": "def run_demucs(\n    wav_path: Path,\n    out_target: Path,\n    *,\n    single_sig: str = None,    # sig unique, ex: 'a1d90b5c' (si fourni on l'utilise comme clé de modèle)\n    model: str = \"mdx\",  # modèle par défaut si single_sig=None\n    device: str = \"cuda\",   # ignoré par CLI sauf si cpu=True\n    use_cli: bool = True,   # si True utilisera la CLI, sinon (fallback) garderait l'API (non utilisée ici)\n):\n    \"\"\"",
         "detail": "back_end.utils.extract_voice_utils",
         "documentation": {}
     },
@@ -1328,11 +1702,11 @@
         "documentation": {}
     },
     {
-        "label": "transcribe_with_faster_whisper_auto",
+        "label": "transcribe_with_whisper_auto",
         "kind": 2,
         "importPath": "back_end.utils.transcribe_with_whisper_utils",
         "description": "back_end.utils.transcribe_with_whisper_utils",
-        "peekOfCode": "def transcribe_with_faster_whisper_auto(\n    logger: logging.Logger,\n    audio_path: Path,\n    model_name: str,     # mettre \"medium\" pour meilleure qualité que small\n    device: str,\n    language: str,\n    temperature: float = 0.0,\n    beam_size: int = 5,\n    reuse: bool = True,\n    whisper_models: Dict[Tuple[str, str, str], Any] = {}",
+        "peekOfCode": "def transcribe_with_whisper_auto(\n    logger: logging.Logger,\n    audio_path: Path,\n    model_name: str,     # e.g. \"small\", \"base\", \"medium\"\n    device: str,         # \"cuda\", \"cuda:0\" or \"cpu\"\n    language: str,\n    temperature: float = 0.0,\n    beam_size: int = 5,\n    reuse: bool = True,\n    whisper_models: Dict[Tuple[str, str, str], Any] = {}",
         "detail": "back_end.utils.transcribe_with_whisper_utils",
         "documentation": {}
     },
@@ -1373,11 +1747,20 @@
         "documentation": {}
     },
     {
-        "label": "logger",
-        "kind": 5,
+        "label": "list_jobs",
+        "kind": 2,
         "importPath": "back_end.app",
         "description": "back_end.app",
-        "peekOfCode": "logger = logging.getLogger(\"app\")\napp = FastAPI(title=\"Pipeline Audio → Sous-titres\")\napp.add_middleware(\n  CORSMiddleware,\n  allow_origins=[\"*\"],  # en dev OK, en prod restreindre aux origines nécessaires\n  allow_credentials=True,\n  allow_methods=[\"*\"],\n  allow_headers=[\"*\"],\n)\n# dossier uploads accessible via /uploads",
+        "peekOfCode": "def list_jobs():\n    \"\"\"\n    Retourne tous les jobs enregistrés (avec leurs fichiers) sous forme JSON.\n    \"\"\"\n    jobs = get_all_jobs()\n    return {\"count\": len(jobs), \"jobs\": jobs}\n@app.get(\"/jobs/{job_id}\")\ndef get_job(job_id: str):\n    \"\"\"\n    Détails d'un job unique.",
+        "detail": "back_end.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_job",
+        "kind": 2,
+        "importPath": "back_end.app",
+        "description": "back_end.app",
+        "peekOfCode": "def get_job(job_id: str):\n    \"\"\"\n    Détails d'un job unique.\n    \"\"\"\n    job = get_job_serialized(job_id)\n    if job is None:\n        raise HTTPException(status_code=404, detail=\"Job non trouvé\")\n    return job",
         "detail": "back_end.app",
         "documentation": {}
     },
@@ -1386,7 +1769,7 @@
         "kind": 5,
         "importPath": "back_end.app",
         "description": "back_end.app",
-        "peekOfCode": "app = FastAPI(title=\"Pipeline Audio → Sous-titres\")\napp.add_middleware(\n  CORSMiddleware,\n  allow_origins=[\"*\"],  # en dev OK, en prod restreindre aux origines nécessaires\n  allow_credentials=True,\n  allow_methods=[\"*\"],\n  allow_headers=[\"*\"],\n)\n# dossier uploads accessible via /uploads\nUPLOAD_DIR = Path(\"uploads\")",
+        "peekOfCode": "app = FastAPI(title=\"Pipeline Audio → Sous-titres\")\ninit_db()\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n# dossier uploads accessible via /uploads",
         "detail": "back_end.app",
         "documentation": {}
     },
@@ -1395,8 +1778,35 @@
         "kind": 5,
         "importPath": "back_end.app",
         "description": "back_end.app",
-        "peekOfCode": "UPLOAD_DIR = Path(\"uploads\")\nUPLOAD_DIR.mkdir(parents=True, exist_ok=True)\napp.mount(\"/uploads\", StaticFiles(directory=str(UPLOAD_DIR)), name=\"uploads\")\ndef _unique_output_dir(base_dir: Path, prefix: str = \"job\") -> Path:\n    ts = datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n    out = base_dir / f\"{prefix}_{ts}\"\n    out.mkdir(parents=True, exist_ok=True)\n    return out\nasync def _run_full_pipeline(\n    upload_path: Path,   # anciennement video_path ; peut être audio ou video selon is_audio",
+        "peekOfCode": "UPLOAD_DIR = Path(\"uploads\")\nUPLOAD_DIR.mkdir(parents=True, exist_ok=True)\napp.mount(\"/uploads\", StaticFiles(directory=str(UPLOAD_DIR)), name=\"uploads\")\n# inclure le router SSE\napp.include_router(sse_router)\n@app.post(\"/video/process\")\nasync def upload_and_process_video(\n    language: str = Form(\"fr\"),\n    position: str = Form(\"bottom-center\"),\n    font_name: str = Form(\"Arial\"),",
         "detail": "back_end.app",
+        "documentation": {}
+    },
+    {
+        "label": "unique_output_dir",
+        "kind": 2,
+        "importPath": "back_end.pipeline",
+        "description": "back_end.pipeline",
+        "peekOfCode": "def unique_output_dir(base_dir: Path, prefix: str = \"job\") -> Path:\n    ts = datetime.datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n    out = base_dir / f\"{prefix}_{ts}\"\n    out.mkdir(parents=True, exist_ok=True)\n    return out\nlogging.basicConfig(level=logging.INFO, format=\"[%(levelname)s] %(message)s\")\nlogger = logging.getLogger(\"app\")\nasync def run_full_pipeline(\n    upload_path: Path,   # anciennement video_path ; peut être audio ou video selon is_audio\n    out_dir: Path,",
+        "detail": "back_end.pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "back_end.pipeline",
+        "description": "back_end.pipeline",
+        "peekOfCode": "logger = logging.getLogger(\"app\")\nasync def run_full_pipeline(\n    upload_path: Path,   # anciennement video_path ; peut être audio ou video selon is_audio\n    out_dir: Path,\n    *,\n    # pipeline parameters (exposés par le endpoint)\n    language: str,\n    whisper_model: str,\n    device: str,\n    position: str,",
+        "detail": "back_end.pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "back_end.sse",
+        "description": "back_end.sse",
+        "peekOfCode": "router = APIRouter()\n@router.get(\"/stream/{job_id}\")\nasync def stream_job(job_id: str, request: Request):\n    q = get_job_queue(job_id)\n    if q is None:\n        return JSONResponse({\"error\": \"job not found\"}, status_code=404)\n    async def event_generator():\n        try:\n            while True:\n                if await request.is_disconnected():",
+        "detail": "back_end.sse",
         "documentation": {}
     },
     {

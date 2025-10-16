@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:front_end/config/constante.dart';
+import 'package:front_end/navigation/nav_bar.dart';
 import 'package:front_end/pages/controls/upload_controlle.dart';
 import 'package:front_end/pages/controls/action_button.dart';
 import 'package:front_end/pages/widget_page/choix_fond_video.dart';
@@ -10,9 +12,8 @@ import 'package:front_end/pages/widget_page/choix_font_type.dart';
 import 'package:front_end/pages/widget_page/choix_str_position.dart';
 import 'package:front_end/pages/widget_page/choix_font_size.dart';
 import 'package:front_end/pages/card/header_card.dart';
-import 'package:front_end/pages/widget_page/fond_subtitle/wav_signale_option.dart';
 import 'package:front_end/services/task_model.dart';
-import 'package:front_end/widgets/processing_page.dart';
+import 'package:front_end/pages/processing_page.dart';
 import '../services/api_service.dart';
 
 class UploadPage extends StatefulWidget {
@@ -34,10 +35,9 @@ class _UploadPageState extends State<UploadPage> {
   PlatformFile? _videoFile; // holds either audio or video depending on mode
   PlatformFile? _fondFile;
   String? _fondHex = '#000000';
-  bool _showWavForm = false;
   bool _subtitleFromAudio = false;
 
-  final String _backendBase = 'http://127.0.0.1:8000';
+  final String _backendBase = BASE_URL;
   final List<String> _supportedLanguages = ['fr', 'en', "es", "de"];
 
   // --- Video picker (existing behavior)
@@ -115,7 +115,6 @@ class _UploadPageState extends State<UploadPage> {
         outlineColor: _fontOutlineHex,
         fond: (_fondFile == null) ? (_fondHex ?? '#000000') : null,
         fondFile: _fondFile,
-        showWavForm: _showWavForm,
       );
 
       if (response.containsKey('job_id')) {
@@ -221,13 +220,6 @@ class _UploadPageState extends State<UploadPage> {
           ),
 
           const SizedBox(height: 20),
-          const Divider(),
-
-          const SizedBox(height: 16),
-          WavSignaleOption(
-            onChanged: (v) => setState(() => _showWavForm = v),
-            waveForm: _showWavForm,
-          ),
         ],
       ),
     );
@@ -238,165 +230,171 @@ class _UploadPageState extends State<UploadPage> {
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
 
-    final title = _subtitleFromAudio
-        ? 'Paramètres de sous-titrage (Audio)'
-        : 'Paramètres de sous-titrage (Vidéo)';
-
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          title,
-          style: TextStyle(fontWeight: FontWeight.w600, letterSpacing: 0.5),
-        ),
-        centerTitle: true,
-        elevation: 4,
-      ),
-      body: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDarkMode
-                ? [
-                    Colors.grey.shade900,
-                    Colors.grey.shade800,
-                    Colors.grey.shade900,
-                  ]
-                : [
-                    Colors.blue.shade50,
-                    Colors.grey.shade50,
-                    Colors.blue.shade50,
-                  ],
+      body: Column(
+        children: [
+          TopNavBar(
+            currentRoute: '/upload',
+            onRouteChanged: (route) {
+              Navigator.pushReplacementNamed(context, route);
+            },
           ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // Header Card
-              HeaderCard(isDarkMode: isDarkMode, isAudio: _subtitleFromAudio),
-              const SizedBox(height: 24),
-
-              // Upload Controls Section
-              UploadControls(
-                languages: _supportedLanguages,
-                isDarkMode: isDarkMode,
-                mediaFile: _videoFile,
-                mediaLang: _videoLanguage,
-                isAudio: _subtitleFromAudio,
-                onPickMedia: _subtitleFromAudio ? _pickAudio : _pickVideo,
-                onMediaLangChanged: (lang) =>
-                    setState(() => _videoLanguage = lang ?? 'fr'),
-              ),
-
-              const SizedBox(height: 24),
-
-              // Style Settings Section
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: isDarkMode
-                      ? Colors.grey.shade800.withOpacity(0.7)
-                      : Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: isDarkMode
+                      ? [
+                          Colors.grey.shade900,
+                          Colors.grey.shade800,
+                          Colors.grey.shade900,
+                        ]
+                      : [
+                          Colors.blue.shade50,
+                          Colors.grey.shade50,
+                          Colors.blue.shade50,
+                        ],
                 ),
+              ),
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // Section Header
+                    // Header Card
+                    HeaderCard(
+                      isDarkMode: isDarkMode,
+                      isAudio: _subtitleFromAudio,
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Upload Controls Section
+                    UploadControls(
+                      languages: _supportedLanguages,
+                      isDarkMode: isDarkMode,
+                      mediaFile: _videoFile,
+                      mediaLang: _videoLanguage,
+                      isAudio: _subtitleFromAudio,
+                      onPickMedia: _subtitleFromAudio ? _pickAudio : _pickVideo,
+                      onMediaLangChanged: (lang) =>
+                          setState(() => _videoLanguage = lang ?? 'fr'),
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    // Style Settings Section
                     Container(
-                      padding: const EdgeInsets.all(12),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.style,
-                            color: isDarkMode
-                                ? Colors.blue.shade200
-                                : const Color.fromARGB(255, 0, 62, 133),
-                            size: 20,
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: isDarkMode
+                            ? Colors.grey.shade800.withOpacity(0.7)
+                            : Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
                           ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Style des sous-titres',
-                            textAlign: TextAlign.center,
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24,
-                              color: isDarkMode
-                                  ? Colors.white
-                                  : const Color.fromARGB(255, 0, 62, 133),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          // Section Header
+                          Container(
+                            padding: const EdgeInsets.all(12),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.style,
+                                  color: isDarkMode
+                                      ? Colors.blue.shade200
+                                      : const Color.fromARGB(255, 0, 62, 133),
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Style des sous-titres',
+                                  textAlign: TextAlign.center,
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 24,
+                                    color: isDarkMode
+                                        ? Colors.white
+                                        : const Color.fromARGB(255, 0, 62, 133),
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+                          const SizedBox(height: 20),
+                          const Divider(),
+
+                          // Position and Language Row
+                          PositionChoice(
+                            position: _position,
+                            onChanged: (v) => setState(
+                              () => _position = v ?? 'bottom-center',
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          const Divider(),
+
+                          // Font Settings
+                          FontChoice(
+                            fontName: _fontName,
+                            onChanged: (v) => setState(() => _fontName = v),
+                          ),
+                          const SizedBox(height: 12),
+                          const Divider(),
+
+                          // Choix couleur du texte
+                          FontColorChoice(
+                            colorHex: _fontColorHex,
+                            onChanged: (hex) =>
+                                setState(() => _fontColorHex = hex),
+                          ),
+                          const SizedBox(height: 12),
+                          const Divider(),
+
+                          // Choix couleur du contour
+                          FontOutlineChoice(
+                            outlineHex: _fontOutlineHex,
+                            onChanged: (hex) =>
+                                setState(() => _fontOutlineHex = hex),
+                          ),
+                          const SizedBox(height: 12),
+                          const Divider(),
+
+                          FontSizeChoice(
+                            fontSize: _fontSize,
+                            onChanged: (v) => setState(() => _fontSize = v),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const Divider(),
+                    const SizedBox(height: 24),
 
-                    // Position and Language Row
-                    PositionChoice(
-                      position: _position,
-                      onChanged: (v) =>
-                          setState(() => _position = v ?? 'bottom-center'),
-                    ),
+                    // Sections conditionnelles pour audio
+                    if (_subtitleFromAudio) ...[_buildBackgroundSection()],
+
                     const SizedBox(height: 16),
-                    const Divider(),
 
-                    // Font Settings
-                    FontChoice(
-                      fontName: _fontName,
-                      onChanged: (v) => setState(() => _fontName = v),
+                    // Action Button
+                    ActionButton(
+                      isProcessing: _isProcessing,
+                      isDarkMode: isDarkMode,
+                      onPressed: _submit,
                     ),
-                    const SizedBox(height: 12),
-                    const Divider(),
-
-                    // Choix couleur du texte
-                    FontColorChoice(
-                      colorHex: _fontColorHex,
-                      onChanged: (hex) => setState(() => _fontColorHex = hex),
-                    ),
-                    const SizedBox(height: 12),
-                    const Divider(),
-
-                    // Choix couleur du contour
-                    FontOutlineChoice(
-                      outlineHex: _fontOutlineHex,
-                      onChanged: (hex) => setState(() => _fontOutlineHex = hex),
-                    ),
-                    const SizedBox(height: 12),
-                    const Divider(),
-
-                    FontSizeChoice(
-                      fontSize: _fontSize,
-                      onChanged: (v) => setState(() => _fontSize = v),
-                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
-
-              // Sections conditionnelles pour audio
-              if (_subtitleFromAudio) ...[_buildBackgroundSection()],
-
-              const SizedBox(height: 16),
-
-              // Action Button
-              ActionButton(
-                isProcessing: _isProcessing,
-                isDarkMode: isDarkMode,
-                onPressed: _submit,
-              ),
-              const SizedBox(height: 20),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
