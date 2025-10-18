@@ -1,4 +1,4 @@
-# Projet de Sous-titrage Audio avec GPU
+# Projet de Sous-titrage Audio utilisant le GPU
 
 Ce projet permet de générer des sous-titres à partir de fichiers audio ou vidéo en utilisant :
 
@@ -26,7 +26,7 @@ Ce projet permet de générer des sous-titres à partir de fichiers audio ou vid
 ## 📦 Dépendances et installation
 
 ### 1. Python
-- **Version recommandée** : Python 3.10+
+- **Version recommandée** : Python 3.10
 
 ### 2. CUDA + PyTorch
 Installe PyTorch avec support CUDA correspondant à ta carte GPU :
@@ -36,3 +36,5 @@ pip install openai-whisper
 pip install git+https://github.com/m-bain/whisperX.git
 pip install demucs
 sudo apt install ffmpeg
+
+ensuite le premier lancement du programme téléchargera les package complémentaires 
